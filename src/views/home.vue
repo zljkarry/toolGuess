@@ -8,7 +8,7 @@
       <img src alt />
     </div>
     <div class="btn" @click="startJoin">开始游戏</div>
-    <div class="btn">排行榜</div>
+    <div class="btn" @click="goRanking">排行榜</div>
   </div>
 </template>
 
@@ -20,6 +20,9 @@ export default {
   methods: {
     startJoin() {
       this.$router.push("/choose");
+    },
+    goRanking() {
+      this.$router.push("/ranking");
     }
   }
 };

@@ -17,6 +17,7 @@ export default {
   methods: {
     goEasy() {
       this.$router.push("/easy");
+      
     },
     goOridinary() {
       this.$router.push("/oridinary");

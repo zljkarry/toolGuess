@@ -14,8 +14,8 @@ const ApiService = {
     setHeader() {
         Vue.axios.defaults.headers.common[
             "Authorization"
-        ] = `${localStorage.getItem('id_token_puzzle')}`
-        console.log(localStorage.getItem('id_token_puzzle'))
+        ] = `${localStorage.getItem('id_token_toolguess')}`
+        console.log(localStorage.getItem('id_token_toolguess'))
     },
 
     // 封装axios
@@ -48,17 +48,21 @@ const ApiService = {
 export default ApiService;
 
 export const ResultService = {
-    // enterGame() {
-    //     return ApiService.get(`getMy`)
-    // },
-
-    // getSuccess(params) {
-    //     return ApiService.post(`success`, params)
-    // },
-    // getRankList(params) {
-    //     return ApiService.get(`get?level=${params}`)
-    // }
-
+    // 难度选择之后进入游戏向后端请求游戏题目数据，根据传入的难度参数返回长度不同的数组
+    // 数组中每个对象的属性包括器具图片url，器具名称，16个乱序字数组
+    enterGame(params) {
+        return ApiService.get(`questions?level=${params}`)
+    },
+    // 闯关成功，给后端发送用户成功难度级别，用时
+    // 后端返回此次闯关用时，排名，此次成绩是否计入排行（即是否已挑战过两次以上）
+    gameSucceed(params) {
+        return ApiService.post(`success`,params)
+    },
+    // 获取排行榜，根据传入的难度参数返回不同类别排行榜
+    // 排行榜数据为数组，数组中每个对象的属性包括昵称与用时，数组顺序和排名一致
+    getRanking(params) {
+        return ApiService.get(`ranking?level=${params}`)
+    }
 }
 
 
