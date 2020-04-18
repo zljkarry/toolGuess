@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="back" @click="goBack"></div>
+    <div class="back" @click="goHome"></div>
     <div class="title">选择你需要挑战的难度</div>
     <div class="btn" @click="goEasy">简单</div>
     <div class="btn" @click="goOridinary">一般</div>
@@ -17,7 +17,6 @@ export default {
   methods: {
     goEasy() {
       this.$router.push("/easy");
-      
     },
     goOridinary() {
       this.$router.push("/oridinary");
@@ -25,7 +24,7 @@ export default {
     goHard() {
       this.$router.push("/hard");
     },
-    goBack() {
+    goHome() {
       this.$router.push("/home");
     }
   }

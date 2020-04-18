@@ -19,24 +19,24 @@
       <div class="list" v-show="num===0">
         <div class="list_item" v-for="(item,index) in item0s" :key="item.index">
           <span class="icon" :class="setClass(index)">{{setNumber(index)}}</span>
-          <span class="time">{{item.Second}}s</span>
-          <span class="nickname">{{item.Nickname}}</span>
+          <span class="time">{{item.time}}s</span>
+          <span class="nickname">{{item.nickname}}</span>
         </div>
       </div>
       <!-- 一般题排行榜 -->
       <div class="list" v-show="num===1">
         <div class="list_item" v-for="(item,index) in item1s" :key="item.index">
           <span class="icon" :class="setClass(index)">{{setNumber(index)}}</span>
-          <span class="time">{{item.Second}}s</span>
-          <span class="nickname">{{item.Nickname}}</span>
+          <span class="time">{{item.time}}s</span>
+          <span class="nickname">{{item.nickname}}</span>
         </div>
       </div>
       <!-- 困难题排行榜 -->
       <div class="list" v-show="num===2">
         <div class="list_item" v-for="(item,index) in item2s" :key="item.index">
           <span class="icon" :class="setClass(index)">{{setNumber(index)}}</span>
-          <span class="time">{{item.Second}}s</span>
-          <span class="nickname">{{item.Nickname}}</span>
+          <span class="time">{{item.time}}s</span>
+          <span class="nickname">{{item.nickname}}</span>
         </div>
       </div>
     </div>
@@ -45,28 +45,71 @@
 </template>
 
 <script>
+import { ResultService } from "../common/service/api.js";
 export default {
   data() {
     return {
       num: 0,
-      // 或者改成三个接口
-      item0s() {
-        return this.$store.state.rankList.easyRank;
-      },
-      item1s() {
-        return this.$store.state.rankList.oridinaryRank;
-      },
-      item2s() {
-        return this.$store.state.rankList.hardRank;
-      },
+      item0s: [
+        {
+          nickname: "赵丽佳",
+          time: "20.10"
+        },
+        {
+          nickname: "赵丽佳",
+          time: "20.10"
+        },
+        {
+          nickname: "赵丽佳",
+          time: "20.10"
+        },
+        {
+          nickname: "赵丽佳",
+          time: "20.10"
+        },
+        {
+          nickname: "赵丽佳",
+          time: "20.10"
+        }
+      ]
     };
+  },
+  created() {
+    let item0s = ResultService.getRanking(0);
+    let item1s = ResultService.getRanking(1);
+    let item2s = ResultService.getRanking(2);
   },
   methods: {
     goHome() {
       this.$router.push("/home");
+    },
+    // 标记排行
+    setClass(index) {
+      let obj = { rank: true };
+      obj[`rank${index}`] = true;
+      return obj;
+    },
+    setNumber(index) {
+      if (index == 0 || index == 1 || index == 2) {
+        return "";
+      } else {
+        return index + 1 + "th";
+      }
     }
   }
 };
 </script>
 <style lang="scss" scoped>
+.rank0 {
+  background: url("../assets/img/ranking/first.png");
+  background-size: cover;
+}
+.rank1 {
+  background: url("../assets/img/ranking/first.png");
+  background-size: cover;
+}
+.rank2 {
+  background: url("../assets/img/ranking/first.png");
+  background-size: cover;
+}
 </style>
