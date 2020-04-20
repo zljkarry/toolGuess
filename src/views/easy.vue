@@ -34,13 +34,14 @@
 </template>
 
 <script>
+import backgroundImg from "@/components/backgroundimg.vue";
 import { ResultService } from "../common/service/api.js";
-import { FETCH_SUCCESS } from "../store/type/actions_type"
+import { FETCH_SUCCESS } from "../store/type/actions_type";
 // import {}
 export default {
   data() {
     return {
-      time: 0,
+      time: 0.0,
       timer: null,
       n: 0,
       isWarn: false,
@@ -164,6 +165,9 @@ export default {
       ]
     };
   },
+  components: {
+    backgroundImg
+  },
   created() {
     // 请求题目资源
     // this.questions = ResultService.enterGame(0);
@@ -175,8 +179,9 @@ export default {
     // 开始计时
     start() {
       this.timer = setInterval(() => {
-        this.time = this.time + 1000;
-      }, 1000);
+        this.time = this.time + 0.01;
+        this.time = parseFloat(this.time.toFixed(2));
+      }, 10);
     },
     // 点击返回按钮后的响应
     overBack() {
@@ -190,9 +195,7 @@ export default {
     closeWarn() {
       this.isWarn = false;
       // 继续计时
-      this.timer = setInterval(() => {
-        this.time = this.time + 1000;
-      }, 1000);
+      this.start();
     },
 
     // 点击相应文字时，获取所选文字并将其赋给answer的value
@@ -202,7 +205,7 @@ export default {
       console.log(this.$refs.answer.value);
       this.over();
     },
-    // 选择完毕时的相关处理
+    // 选择完毕时的相关处理，如果答案正确处理，不正确提示
     // 当选择的文字等于答案文字时认为选择完毕（有问题，若答案三个字，选择了两个字，不会提醒用户选择错误)
     over() {
       if (
@@ -229,10 +232,10 @@ export default {
 
             // 模拟数据
             let data = {
-              time: this.time,
-            }
+              time: this.time
+            };
 
-            this.$store.dispatch(FETCH_SUCCESS,data);
+            this.$store.dispatch(FETCH_SUCCESS, data);
             this.$router.push("/over");
             // 清除计时器
             clearInterval(this.timer);

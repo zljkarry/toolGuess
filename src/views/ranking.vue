@@ -1,14 +1,24 @@
 <template>
   <div>
-    <div class="btn" @click="goHome"></div>
-    <div class="title">排行榜</div>
+    <background-img></background-img>
+
+    <img class="btn" @click="goHome" src="../assets/img/back.png" alt />
+
+    <img class="title" src="../assets/img/ranking/rank_title.png" alt />
+
     <!-- 选择不同类别排行榜按钮 -->
     <div class="tabs">
-      <div @click="num=0" :class="{active: num===0}">简单</div>
-      <div @click="num=1" :class="{active: num===1}">一般</div>
-      <div @click="num=2" :class="{active: num===2}">困难</div>
+      <div @click="num=0" :class="{active0: num===0}" class="easy"></div>
+      <div @click="num=1" :class="{active1: num===1}" class="oridinary"></div>
+      <div @click="num=2" :class="{active2: num===2}" class="hard"></div>
     </div>
     <div class="content">
+      <div class="box">
+        <div class="bg_top"></div>
+        <div class="bg_center"></div>
+        <div class="bg_bottom"></div>
+      </div>
+
       <!-- 排行榜标题 -->
       <div class="list_title">
         <div>排名</div>
@@ -45,6 +55,7 @@
 </template>
 
 <script>
+import backgroundImg from "@/components/backgroundimg.vue";
 import { ResultService } from "../common/service/api.js";
 export default {
   data() {
@@ -71,8 +82,55 @@ export default {
           nickname: "赵丽佳",
           time: "20.10"
         }
+      ],
+      item1s: [
+        {
+          nickname: "赵丽佳2",
+          time: "20.10"
+        },
+        {
+          nickname: "赵丽佳",
+          time: "20.10"
+        },
+        {
+          nickname: "赵丽佳",
+          time: "20.10"
+        },
+        {
+          nickname: "赵丽佳",
+          time: "20.10"
+        },
+        {
+          nickname: "赵丽佳",
+          time: "20.10"
+        }
+      ],
+      item2s: [
+        {
+          nickname: "赵丽佳3",
+          time: "20.10"
+        },
+        {
+          nickname: "赵丽佳",
+          time: "20.10"
+        },
+        {
+          nickname: "赵丽佳",
+          time: "20.10"
+        },
+        {
+          nickname: "赵丽佳",
+          time: "20.10"
+        },
+        {
+          nickname: "赵丽佳",
+          time: "20.10"
+        }
       ]
     };
+  },
+  components: {
+    backgroundImg
   },
   created() {
     let item0s = ResultService.getRanking(0);
@@ -100,6 +158,86 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.btn {
+  width: 83px;
+  height: 85px;
+  position: absolute;
+  top: 17px;
+  left: 12px;
+}
+.title {
+  width: 402px;
+  height: 130px;
+  margin: 46px 170px 20px 170px;
+}
+.tabs {
+  width: 628px;
+  height: 100px;
+  margin: auto auto;
+  transform: translateX(5px);
+  display: flex;
+  justify-content: space-around;
+  .easy {
+    font-family: "fangzheng";
+    font-size: 36px;
+    line-height: 100px;
+    color: #8b4545;
+    width: 200px;
+    height: 100px;
+    background-image: url("../assets/img/ranking/easy.png");
+    background-size: cover;
+  }
+  .active0 {
+    background-image: url("../assets/img/ranking/easy.png");
+  }
+  .oridinary {
+    width: 200px;
+    height: 100px;
+    background-image: url("../assets/img/ranking/oridinary_active.png");
+    background-size: cover;
+  }
+  .active1 {
+    background-image: url("../assets/img/ranking/oridinary_active.png");
+  }
+  .hard {
+    width: 200px;
+    height: 100px;
+    background-image: url("../assets/img/ranking/hard.png");
+    background-size: cover;
+  }
+  .active2 {
+    background-image: url("../assets/img/ranking/hard.png");
+  }
+}
+.content {
+  width: 638px;
+  margin: auto auto;
+  .box {
+    width: 638px;
+    z-index: -1;
+    position: absolute;
+    .bg_top {
+      width: 100%;
+      height: 148px;
+      background-image: url("../assets/img/ranking/box_top.png");
+      background-size: 100%;
+    }
+    .bg_center {
+      width: 100%;
+      height: 610px;
+      background-image: url("../assets/img/ranking/box.jpg");
+      background-repeat: repeat-y;
+      background-size: 100%;
+    }
+    .bg_bottom {
+      width: 100%;
+      height: 71px;
+      background-image: url("../assets/img/ranking/box_bottom.png");
+      background-size: 100%;
+
+    }
+  }
+}
 .rank0 {
   background: url("../assets/img/ranking/first.png");
   background-size: cover;

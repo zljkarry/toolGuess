@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import backgroundImg from '@/components/backgroundimg.vue'
 export default {
   data() {
     return {
@@ -17,7 +18,9 @@ export default {
       rank: 0
     };
   },
-  mounted() {},
+  components: {
+    backgroundImg
+  },
   methods: {
     goHome() {
       this.$router.push("/home");
