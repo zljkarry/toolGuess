@@ -30,6 +30,20 @@
     </div>
     <!-- 提示区域 -->
     <div class="hint" v-show="isShow">答案有误！请重新选择</div>
+    <!-- 工具介绍页 -->
+    <div class="introduce" v-show="pageShow">
+      <div class="img">
+        <img src="../assets/img/btn.jpg" alt />
+      </div>
+      <!-- 正确时right会显示，错误时wrong会显示 -->
+      <div class="right" v-show="!wrongShow">{{questions[n].definition}}</div>
+      <div class="wrong" v-show="wrongShow">本题正确答案为：{{questions[n].definition}}！</div>
+      <div class="introduce_words">scsvsvfdvtr</div>
+      <!-- 假按钮，即禁用状态的下一题按钮 -->
+      <div class="fake_next" v-show="!realNext">假的下一题按钮</div>
+      <!-- 真正的下一题按钮 -->
+      <div class="next" v-show="realNext" @click="goNext">下一题</div>
+    </div>
   </div>
 </template>
 
@@ -37,7 +51,6 @@
 import backgroundImg from "@/components/backgroundimg.vue";
 import { ResultService } from "../common/service/api.js";
 import { FETCH_SUCCESS } from "../store/type/actions_type";
-// import {}
 export default {
   data() {
     return {
@@ -46,10 +59,13 @@ export default {
       n: 0,
       isWarn: false,
       isShow: false,
+      pageShow: false,
+      wrongShow: false,
+      realNext: false,
+      count: 0,
       questions: [
         {
-          img:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1587141044912&di=6c45dc61a22feef0c42fbcc7687a93c1&imgtype=0&src=http%3A%2F%2Fa3.att.hudong.com%2F14%2F75%2F01300000164186121366756803686.jpg",
+          img: "../assets/img/btn.jpg",
           definition: "器具",
           words: [
             "器",
@@ -71,8 +87,7 @@ export default {
           ]
         },
         {
-          img:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1587141044912&di=6c45dc61a22feef0c42fbcc7687a93c1&imgtype=0&src=http%3A%2F%2Fa3.att.hudong.com%2F14%2F75%2F01300000164186121366756803686.jpg",
+          img: "../assets/img/btn.jpg",
           definition: "器具",
           words: [
             "器",
@@ -94,8 +109,7 @@ export default {
           ]
         },
         {
-          img:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1587141044912&di=6c45dc61a22feef0c42fbcc7687a93c1&imgtype=0&src=http%3A%2F%2Fa3.att.hudong.com%2F14%2F75%2F01300000164186121366756803686.jpg",
+          img: "../assets/img/btn.jpg",
           definition: "器具",
           words: [
             "器",
@@ -117,8 +131,7 @@ export default {
           ]
         },
         {
-          img:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1587141044912&di=6c45dc61a22feef0c42fbcc7687a93c1&imgtype=0&src=http%3A%2F%2Fa3.att.hudong.com%2F14%2F75%2F01300000164186121366756803686.jpg",
+          img: "../assets/img/btn.jpg",
           definition: "器具",
           words: [
             "器",
@@ -140,8 +153,7 @@ export default {
           ]
         },
         {
-          img:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1587141044912&di=6c45dc61a22feef0c42fbcc7687a93c1&imgtype=0&src=http%3A%2F%2Fa3.att.hudong.com%2F14%2F75%2F01300000164186121366756803686.jpg",
+          img: "../assets/img/btn.jpg",
           definition: "器具",
           words: [
             "器",
@@ -205,45 +217,96 @@ export default {
       console.log(this.$refs.answer.value);
       this.over();
     },
-    // 选择完毕时的相关处理，如果答案正确处理，不正确提示
+    // 选择完毕时的相关处理
     // 当选择的文字等于答案文字时认为选择完毕（有问题，若答案三个字，选择了两个字，不会提醒用户选择错误)
     over() {
       if (
         this.$refs.answer.value.length ==
         this.questions[this.n].definition.length
       ) {
+        // 选择次数加一
+        this.count++;
+        console.log(this.count);
+        // 若答案正确
         if (this.$refs.answer.value == this.questions[this.n].definition) {
           console.log("答题正确");
-          this.$refs.answer.value = "";
           // 若提示输入错误的提示存在，则抹去
           if (this.isShow) {
             this.isShow = false;
           }
-          // 若题目未答完，进入下一题；若答完，上传数据并跳转到闯关成功页面
-          if (this.n < 4) {
-            this.n++;
-          } else {
-            // 将关卡数字和通关时间以xxx-数据形式传到后端
-            // let data = new FormData();
-            // data.append("level", 0);
-            // data.append("time", this.time);
-            // console.log(this.time);
-            // console.log(data);
-
-            // 模拟数据
-            let data = {
-              time: this.time
-            };
-
-            this.$store.dispatch(FETCH_SUCCESS, data);
-            this.$router.push("/over");
-            // 清除计时器
-            clearInterval(this.timer);
-          }
+          // 停止计时
+          console.log("这里清除了计时器");
+          clearInterval(this.timer);
+          // 显示工具介绍页
+          this.pageShow = true;
+          // 工具介绍页不显示提示错误文案
+          this.wrongShow = false;
+          // 两秒后再显示真正的激活状态的下一题按钮
+          setTimeout(() => {
+            this.realNext = true;
+          }, 2000);
         } else {
+          // 若答案不正确
+          // 显示答案错误的提示
           this.isShow = true;
+          // 将答题框值清零
+          this.$refs.answer.value = "";
+          // 若答题次数为5仍然未答对，则显示工具介绍页
+          if (this.count === 5) {
+            // 清除计时器
+            console.log("这里清除了计时器");
+            clearInterval(this.timer);
+            // 时间加10s
+            this.time += 10.0;
+            // 显示工具介绍页
+            this.pageShow = true;
+            // 工具介绍页显示提示错误文案
+            this.wrongShow = true;
+            // 两秒后再显示真正的激活状态的下一题按钮
+            setTimeout(() => {
+              this.realNext = true;
+            }, 2000);
+          }
+        }
+      }
+    },
+    // 若该难度题目未答完，将计算答题次数的计数器清零，进入下一题；若答完，上传数据并跳转到闯关成功页面
+    goNext() {
+      if (this.n < 4) {
+        // 将某一题答题次数清零
+        this.count = 0;
+        // 若工具介绍页在显示则关闭
+        if (this.pageShow) {
+          this.pageShow = false;
+        }
+        // 若答案框有文字则清空
+        if (this.$refs.answer.value != "") {
           this.$refs.answer.value = "";
         }
+        // 若答案错误的提示存在，则抹去
+        if (this.isShow) {
+          this.isShow = false;
+        }
+        this.n++;
+        // 若计时器已被清除，再继续计时
+        this.start();
+      } else {
+        // 将关卡数字和通关时间以xxx-数据形式传到后端
+        // let data = new FormData();
+        // data.append("level", 0);
+        // data.append("time", this.time);
+        // console.log(this.time);
+        // console.log(data);
+
+        // 模拟数据
+        let data = {
+          time: this.time
+        };
+
+        this.$store.dispatch(FETCH_SUCCESS, data);
+        this.$router.push("/over");
+        // 清除计时器
+        clearInterval(this.timer);
       }
     }
   },
@@ -257,4 +320,8 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.options {
+  display: flex;
+  flex-wrap: wrap;
+}
 </style>
