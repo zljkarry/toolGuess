@@ -12,8 +12,7 @@
     </div>
     <div class="hint">
       <div class="notice">
-        注：每种难度仅
-        <span>前2次</span>挑战用时会进入排名，
+        注：每种难度仅<span>前2次</span>挑战用时会进入排名，
       </div>
       <div class="notice">之后用时将不会参加排名。</div>
     </div>

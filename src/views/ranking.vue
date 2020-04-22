@@ -298,6 +298,7 @@ export default {
       width: 114px;
       position: absolute;
       left: 384px;
+      overflow: hidden;
     }
   }
   // 排行榜列表
