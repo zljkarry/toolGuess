@@ -38,7 +38,7 @@
       <!-- 正确时right会显示，错误时wrong会显示 -->
       <div class="right" v-show="!wrongShow">{{questions[n].definition}}</div>
       <div class="wrong" v-show="wrongShow">本题正确答案为：{{questions[n].definition}}！</div>
-      <div class="introduce_words">scsvsvfdvtr</div>
+      <div class="introduce_words">{{questions[n].introduction}}</div>
       <!-- 假按钮，即禁用状态的下一题按钮 -->
       <div class="fake_next" v-show="!realNext">假的下一题按钮</div>
       <!-- 真正的下一题按钮 -->
@@ -67,6 +67,7 @@ export default {
         {
           img: "../assets/img/btn.jpg",
           definition: "器具",
+          introduction: "这是工具描述介绍1这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍",
           words: [
             "器",
             "具",
@@ -89,6 +90,7 @@ export default {
         {
           img: "../assets/img/btn.jpg",
           definition: "器具",
+          introduction: "这是工具描述介绍2这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍",
           words: [
             "器",
             "具",
@@ -111,6 +113,7 @@ export default {
         {
           img: "../assets/img/btn.jpg",
           definition: "器具",
+          introduction: "这是工具描述介绍3这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍",
           words: [
             "器",
             "具",
@@ -133,6 +136,7 @@ export default {
         {
           img: "../assets/img/btn.jpg",
           definition: "器具",
+          introduction: "这是工具描述介绍4这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍",
           words: [
             "器",
             "具",
@@ -155,6 +159,7 @@ export default {
         {
           img: "../assets/img/btn.jpg",
           definition: "器具",
+          introduction: "这是工具描述介绍5这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍",
           words: [
             "器",
             "具",
