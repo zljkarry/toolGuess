@@ -270,23 +270,26 @@ export default {
         }
       }
     },
-    // 若该难度题目未答完，将计算答题次数的计数器清零，进入下一题；若答完，上传数据并跳转到闯关成功页面
+    // 若该难度题目未答完，初始化数据后进入下一题；若答完，上传数据并跳转到闯关成功页面
     goNext() {
       if (this.n < 4) {
+        // 若答案框有文字则清空
+        if (this.$refs.answer.value != "") {
+          this.$refs.answer.value = "";
+        }
         // 将某一题答题次数清零
         this.count = 0;
         // 若工具介绍页在显示则关闭
         if (this.pageShow) {
           this.pageShow = false;
         }
-        // 若答案框有文字则清空
-        if (this.$refs.answer.value != "") {
-          this.$refs.answer.value = "";
-        }
+        // 下一题按钮禁用
+        this.realNext = false;
         // 若答案错误的提示存在，则抹去
         if (this.isShow) {
           this.isShow = false;
         }
+        // 改变题目内容
         this.n++;
         // 若计时器已被清除，再继续计时
         this.start();
