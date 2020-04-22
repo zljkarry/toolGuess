@@ -2,7 +2,7 @@
   <div class="home">
     <background-img></background-img>
     <div class="title"></div>
-    <img @click="hintMsg" src="../assets/img/rule.png" class="rule" />
+    <div class="masking" v-show="isShow"></div>
     <div class="explain" v-show="isShow">
       <img src="../assets/img/close.png" class="close_btn" @click="closeExplain" />
       <div class="small_title">活动规则</div>
@@ -15,6 +15,8 @@
         </div>
       </div>
     </div>
+    <img @click="hintMsg" src="../assets/img/rule.png" class="rule" />
+
     <img class="enter_game_btn" @click="startJoin" src="../assets/img/enter_game.png" />
     <img class="ranking_btn" @click="goRanking" src="../assets/img/ranking.png" />
   </div>
@@ -91,6 +93,13 @@ export default {
         justify-content: space-between;
       }
     }
+  }
+  .masking {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #530101;
+    opacity: 0.4;
   }
   .rule {
     width: 57px;
