@@ -14,7 +14,7 @@
         <span>th</span>
       </div>
     </div>
-    <img src="../assets/img/go_home.png" class="btn" @click="goHome" />
+    <img src="../assets/img/over/go_home.png" class="btn" @click="goHome" />
     <div class="hint">
        <!-- v-show="!this.$store.state.valid" -->
       <p>由于您在该难度已经挑战过3次</p>
@@ -50,7 +50,7 @@ export default {
     height: 100%;
     z-index: -1;
     position: absolute;
-    background-image: url("../assets/img/success.png");
+    background-image: url("../assets/img/over/success.png");
     background-repeat: no-repeat;
     background-size: 100%;
   }

@@ -1,7 +1,7 @@
 <template>
   <div>
     <background-img></background-img>
-    <img class="btn" @click="goHome" src="../assets/img/back.png" alt />
+    <img class="btn" @click="goHome" src="../assets/img/icon/back.png" alt />
     <img class="title" src="../assets/img/choose/title.png" alt />
     <div class="list">
       <img class="choice1" @click="goEasy" src="../assets/img/choose/easy.png" alt />

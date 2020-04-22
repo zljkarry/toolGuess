@@ -2,7 +2,7 @@
   <div>
     <background-img></background-img>
 
-    <img class="btn" @click="goHome" src="../assets/img/back.png" alt />
+    <img class="btn" @click="goHome" src="../assets/img/icon/back.png" alt />
 
     <img class="title" src="../assets/img/ranking/rank_title.png" alt />
 

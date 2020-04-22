@@ -1,13 +1,14 @@
 <template>
-  <div>
+  <div class="game">
+    <background-img></background-img>
     <!-- 顶栏信息 -->
-    <div class="back" @click="overBack">
-      <img src="../assets/img/btn.jpg" alt />
+    <div class="top">
+      <img class="back" @click="overBack" src="../assets/img/icon/back.png" />
+      <div class="show_time">
+        <div class="time">{{time}}s</div>
+      </div>
     </div>
-    <div class="icon">
-      <img src alt />
-    </div>
-    <div class="show_time">{{time}}s</div>
+
     <!-- 返回提示区 -->
     <div class="warning" v-show="isWarn">
       <div class="msg">是否返回主页，若返回该此成绩将不会记录</div>
@@ -18,14 +19,18 @@
     <div class="obj_img">
       <img :src="questions[n].img" />
     </div>
-    <div class="state">{{n+1}}.以上图片中器具的名称是</div>
-    <input class="answer" ref="answer" />
+    <div class="question">
+      <div class="state">{{n+1}}. 以上图片中器具的名称是</div>
+      <input class="answer" ref="answer" />
+    </div>
+    <!-- 选项 -->
     <div class="options">
       <div
         class="option"
         v-for="word in questions[n].words"
         :key="word.index"
-        @click="getWord(word)"
+        @click="getWord(word,$event)"
+        :class="{'white':toWhite}"
       >{{word}}</div>
     </div>
     <!-- 提示区域 -->
@@ -33,7 +38,7 @@
     <!-- 工具介绍页 -->
     <div class="introduce" v-show="pageShow">
       <div class="img">
-        <img src="../assets/img/btn.jpg" alt />
+        <img src="../assets/img/icon/back.png" alt />
       </div>
       <!-- 正确时right会显示，错误时wrong会显示 -->
       <div class="right" v-show="!wrongShow">{{questions[n].definition}}</div>
@@ -63,11 +68,13 @@ export default {
       wrongShow: false,
       realNext: false,
       count: 0,
+      toWhite: false,
       questions: [
         {
           img: "../assets/img/btn.jpg",
           definition: "器具",
-          introduction: "这是工具描述介绍1这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍",
+          introduction:
+            "这是工具描述介绍1这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍",
           words: [
             "器",
             "具",
@@ -90,7 +97,8 @@ export default {
         {
           img: "../assets/img/btn.jpg",
           definition: "器具",
-          introduction: "这是工具描述介绍2这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍",
+          introduction:
+            "这是工具描述介绍2这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍",
           words: [
             "器",
             "具",
@@ -113,7 +121,8 @@ export default {
         {
           img: "../assets/img/btn.jpg",
           definition: "器具",
-          introduction: "这是工具描述介绍3这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍",
+          introduction:
+            "这是工具描述介绍3这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍",
           words: [
             "器",
             "具",
@@ -136,7 +145,8 @@ export default {
         {
           img: "../assets/img/btn.jpg",
           definition: "器具",
-          introduction: "这是工具描述介绍4这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍",
+          introduction:
+            "这是工具描述介绍4这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍",
           words: [
             "器",
             "具",
@@ -159,7 +169,8 @@ export default {
         {
           img: "../assets/img/btn.jpg",
           definition: "器具",
-          introduction: "这是工具描述介绍5这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍",
+          introduction:
+            "这是工具描述介绍5这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍",
           words: [
             "器",
             "具",
@@ -216,10 +227,12 @@ export default {
     },
 
     // 点击相应文字时，获取所选文字并将其赋给answer的value
-    getWord(word) {
+    getWord(word, event) {
       console.log(this.$refs.answer.value);
       this.$refs.answer.value = this.$refs.answer.value + word;
       console.log(this.$refs.answer.value);
+      // 将文字设为红色
+      event.target.style.color = "#f63a3a";
       this.over();
     },
     // 选择完毕时的相关处理
@@ -232,6 +245,11 @@ export default {
         // 选择次数加一
         this.count++;
         console.log(this.count);
+        // 将所有文字颜色设为白色
+        for (var i = 0; i < 16; i++) {
+          event.target.parentNode.children[i].style.color = "#6b2e2e";
+        }
+
         // 若答案正确
         if (this.$refs.answer.value == this.questions[this.n].definition) {
           console.log("答题正确");
@@ -328,8 +346,83 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.options {
-  display: flex;
-  flex-wrap: wrap;
+input {
+  background: none;
+  outline: none;
+  border: none;
+}
+input:focus {
+  border: none;
+}
+.game {
+  overflow: hidden;
+  // 顶栏信息
+  .top {
+    display: flex;
+    // 返回按钮
+    .back {
+      width: 83px;
+      height: 85px;
+      margin: 17px auto auto 12px;
+    }
+    .show_time {
+      width: 180px;
+      height: 80px;
+      background-image: url("../assets/img/game/time_icon.png");
+      background-size: 100%;
+      margin: 13px auto auto 458px;
+      .time {
+        font-family: "yueHei";
+        font-size: 28px;
+        color: #fff;
+        margin-left: 86px;
+        line-height: 80px;
+      }
+    }
+  }
+  .obj_img {
+    width: 643px;
+    height: 386px;
+    background-image: url("../assets/img/game/pic_box.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin: 26px auto 32px auto;
+    img {
+      margin: auto auto;
+    }
+  }
+  .question {
+    display: flex;
+    justify-content: center;
+    .state {
+      width: 489px;
+      font-family: "fangZheng";
+      font-size: 36px;
+      color: #fff;
+      text-align-last: justify;
+    }
+    .answer {
+      width: 118px;
+      margin-left: 15px;
+      border-bottom: 2px solid #fff;
+      text-align: center;
+      font-family: "yueHei";
+      font-size: 36px;
+      color: #fce7d1;
+    }
+  }
+  .options {
+    width: 671px;
+    height: 509px;
+    margin: auto auto;
+    background-image: url("../assets/img/game/options_bg.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    font-family: "yueHei";
+    font-size: 80px;
+    color: #6b2e2e;
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
 </style>

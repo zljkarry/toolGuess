@@ -4,7 +4,7 @@
     <div class="title"></div>
     <div class="masking" v-show="isShow"></div>
     <div class="explain" v-show="isShow">
-      <img src="../assets/img/close.png" class="close_btn" @click="closeExplain" />
+      <img src="../assets/img/icon/close.png" class="close_btn" @click="closeExplain" />
       <div class="small_title">活动规则</div>
       <div class="explain_content">
         <div class="center">
@@ -15,10 +15,10 @@
         </div>
       </div>
     </div>
-    <img @click="hintMsg" src="../assets/img/rule.png" class="rule" />
+    <img @click="hintMsg" src="../assets/img/home/rule.png" class="rule" />
 
-    <img class="enter_game_btn" @click="startJoin" src="../assets/img/enter_game.png" />
-    <img class="ranking_btn" @click="goRanking" src="../assets/img/ranking.png" />
+    <img class="enter_game_btn" @click="startJoin" src="../assets/img/home/enter_game.png" />
+    <img class="ranking_btn" @click="goRanking" src="../assets/img/home/ranking.png" />
   </div>
 </template>
 
@@ -55,7 +55,7 @@ export default {
   .explain {
     width: 592px;
     height: 887px;
-    background-image: url("../assets/img/rule_bg.png");
+    background-image: url("../assets/img/home/rule_bg.png");
     background-size: contain;
     position: absolute;
     top: 168px;
@@ -111,7 +111,7 @@ export default {
     height: 100%;
     z-index: -1;
     position: absolute;
-    background-image: url("../assets/img/home.png");
+    background-image: url("../assets/img/home/home.png");
     background-repeat: no-repeat;
     background-size: 100%;
   }
