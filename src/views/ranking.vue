@@ -278,7 +278,7 @@ export default {
   .list_title {
     width: 496px;
     height: 44px;
-    margin: 60px 70px 26px 70px;
+    margin: 60px 70px 26px 74px;
     font-family: "yueHei";
     font-size: 36px;
     color: #720606;
