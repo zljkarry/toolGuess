@@ -1,19 +1,20 @@
 <template>
   <div class="game">
     <background-img></background-img>
+    <!-- 返回提示区 -->
+    <!-- 蒙版 -->
+    <div class="masking" v-show="isWarn"></div>
+    <div class="warning" v-show="isWarn">
+      <div class="msg">是否返回主页，若返回,该此成绩将不会被记录。</div>
+      <img class="yes_btn" @click="goHome" src="../assets/img/game/yes.png">
+      <img class="no_btn" @click="closeWarn" src="../assets/img/game/no.png">
+    </div>
     <!-- 顶栏信息 -->
     <div class="top">
       <img class="back" @click="overBack" src="../assets/img/icon/back.png" />
       <div class="show_time">
         <div class="time">{{time}}s</div>
       </div>
-    </div>
-
-    <!-- 返回提示区 -->
-    <div class="warning" v-show="isWarn">
-      <div class="msg">是否返回主页，若返回该此成绩将不会记录</div>
-      <div class="btn" @click="goHome">确定</div>
-      <div class="btn" @click="closeWarn">取消</div>
     </div>
     <!-- 答题区域 -->
     <div class="obj_img">
@@ -34,7 +35,7 @@
       >{{word}}</div>
     </div>
     <!-- 提示区域 -->
-    <div class="hint" v-show="isShow">答案有误！请重新选择</div>
+    <div class="hint" v-show="isShow">答案错误！请重新选择</div>
     <!-- 工具介绍页 -->
     <div class="introduce" v-show="pageShow">
       <div class="img">
@@ -88,10 +89,6 @@ export default {
             "具",
             "器",
             "具",
-            "器",
-            "具",
-            "器",
-            "具"
           ]
         },
         {
@@ -112,10 +109,6 @@ export default {
             "具",
             "器",
             "具",
-            "器",
-            "具",
-            "器",
-            "具"
           ]
         },
         {
@@ -136,10 +129,6 @@ export default {
             "具",
             "器",
             "具",
-            "器",
-            "具",
-            "器",
-            "具"
           ]
         },
         {
@@ -245,8 +234,8 @@ export default {
         // 选择次数加一
         this.count++;
         console.log(this.count);
-        // 将所有文字颜色设为白色
-        for (var i = 0; i < 16; i++) {
+        // 将所有文字颜色设为原来颜色
+        for (var i = 0; i < 12; i++) {
           event.target.parentNode.children[i].style.color = "#6b2e2e";
         }
 
@@ -356,6 +345,7 @@ input:focus {
 }
 .game {
   overflow: hidden;
+  position: relative;
   // 顶栏信息
   .top {
     display: flex;
@@ -414,15 +404,68 @@ input:focus {
   .options {
     width: 671px;
     height: 509px;
-    margin: auto auto;
+    margin: 30px auto;
     background-image: url("../assets/img/game/options_bg.png");
     background-repeat: no-repeat;
     background-size: 100%;
     font-family: "yueHei";
     font-size: 80px;
     color: #6b2e2e;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template: 144px 144px 144px / 149px 149px 149px 149px;
+    grid-gap: 20px 14px;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+  }
+  .hint {
+    font-family: 'yueHei';
+    font-size: 28px;
+    color: #ffeabf;
+    text-align: center;
+  }
+  // 确认是否返回
+  .warning {
+    width: 534px;
+    height: 433px;
+    position: absolute;
+    top: 300px;
+    left: 110px;
+    right: 110px;
+    background-image: url("../assets/img/game/pop_up.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    .msg{
+      width: 354px;
+      height: 88px;
+      margin: 148px auto 64px auto;
+      transform: translateX(24px);
+      font-family: 'yueHei';
+      font-size: 32px;
+      color: #732626;
+    }
+    .yes_btn{
+      width: 156px;
+      height: 71px;
+      margin: 0 0 0 70px;
+    }
+    .no_btn {
+      width: 156px;
+      height: 71px;
+      margin: 0 0 0 70px;
+    }
+  }
+  // 蒙版
+  .masking {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #530101;
+    opacity: 0.4;
+  }
+  .introduce{
+    
   }
 }
 </style>
