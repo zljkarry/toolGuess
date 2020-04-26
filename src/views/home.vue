@@ -3,8 +3,6 @@
     <background-img></background-img>
     <div class="title"></div>
     <div class="top_words">
-      <!-- <p>劳动最光荣!&ensp; &ensp; 劳动最崇高!</p>
-      <p>劳动最伟大!&ensp; &ensp; 劳动最美丽</p>-->
       <p>劳动最光荣!</p>
       <p>劳动最崇高!</p>
       <p>劳动最伟大!</p>
@@ -151,6 +149,9 @@ export default {
 }
 @media only screen and (min-height: 600px) {
   .home {
+    .explain{
+      top: 300px;
+    }
     .title {
       background-image: url("../assets/img/home/home2.png");
     }

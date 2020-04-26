@@ -432,8 +432,8 @@ input:focus {
     height: 433px;
     position: absolute;
     top: 300px;
-    left: 110px;
-    right: 110px;
+    left: 50%;
+    transform: translateX(-50%);
     background-image: url("../assets/img/game/pop_up.png");
     background-repeat: no-repeat;
     background-size: 100%;
@@ -475,8 +475,10 @@ input:focus {
     position: absolute;
     top: 126px;
     bottom: 186px;
-    left: 85px;
-    right: 0px;
+    // left: 85px;
+    // right: 0px;
+    left: 50%;
+    transform: translateX(-50%);
     .img {
       width: 507px;
       height: 265px;
@@ -529,6 +531,20 @@ input:focus {
       background-repeat: no-repeat;
       background-size: 100%;
       margin: 20px auto auto auto;
+    }
+  }
+}
+@media only screen and (min-height: 600px) {
+  .game{
+    .obj_img{
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+    .options{
+      margin-bottom: 60px;
+    }
+    .warning{
+      top: 400px;
     }
   }
 }
