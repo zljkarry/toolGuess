@@ -22,7 +22,8 @@ export default {
   position: absolute;
   background: url("../assets/img/bg/bg.jpg");
   background-repeat: repeat-y;
-  background-size: auto;
+  background-attachment: fixed;
+  background-size: 100%;
   .decorate {
     width: 99px;
     height: 66px;

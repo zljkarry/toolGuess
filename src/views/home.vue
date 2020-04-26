@@ -2,6 +2,14 @@
   <div class="home">
     <background-img></background-img>
     <div class="title"></div>
+    <div class="top_words">
+      <!-- <p>劳动最光荣!&ensp; &ensp; 劳动最崇高!</p>
+      <p>劳动最伟大!&ensp; &ensp; 劳动最美丽</p>-->
+      <p>劳动最光荣!</p>
+      <p>劳动最崇高!</p>
+      <p>劳动最伟大!</p>
+      <p>劳动最美丽!</p>
+    </div>
     <div class="masking" v-show="isShow"></div>
     <div class="explain" v-show="isShow">
       <img src="../assets/img/icon/close.png" class="close_btn" @click="closeExplain" />
@@ -15,7 +23,7 @@
         </div>
       </div>
     </div>
-    <img @click="hintMsg" src="../assets/img/home/rule.png" class="rule" />
+    <img class="rule" @click="hintMsg" src="../assets/img/home/rule.png" />
 
     <img class="enter_game_btn" @click="startJoin" src="../assets/img/home/enter_game.png" />
     <img class="ranking_btn" @click="goRanking" src="../assets/img/home/ranking.png" />
@@ -120,10 +128,41 @@ export default {
     height: 115px;
     margin: 708px 214px 0 220px;
   }
+  .top_words {
+    width: 345px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    position: absolute;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: "yueHei";
+    font-size: 26px;
+    color: #ffada0;
+    letter-spacing: 2px;
+    line-height: 36px;
+  }
   .ranking_btn {
     width: 252px;
     height: 115px;
     margin: 12px 228px auto 246px;
+  }
+}
+@media only screen and (min-height: 600px) {
+  .home {
+    .title {
+      background-image: url("../assets/img/home/home2.png");
+    }
+    .enter_game_btn{
+      margin-top: 780px;
+    }
+    .top_words {
+      width: 420px;
+      top: 38px;
+      font-size: 32px;
+      line-height: 40px;
+    }
   }
 }
 </style>

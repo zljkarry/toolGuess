@@ -1,10 +1,10 @@
 <template>
   <div class="game">
     <background-img></background-img>
-    <!-- 返回提示区 -->
     <!-- 蒙版 -->
     <div class="masking" v-show="isWarn"></div>
     <div class="masking" v-show="pageShow"></div>
+    <!-- 返回提示区 -->
     <div class="warning" v-show="isWarn">
       <div class="msg">是否返回主页，若返回,该此成绩将不会被记录。</div>
       <img class="yes_btn" @click="goHome" src="../assets/img/game/yes.png" />
@@ -347,7 +347,6 @@ input:focus {
 }
 .game {
   overflow: hidden;
-  position: relative;
   // 顶栏信息
   .top {
     display: flex;
@@ -476,8 +475,8 @@ input:focus {
     position: absolute;
     top: 126px;
     bottom: 186px;
-    left: 110px;
-    right: 110px;
+    left: 85px;
+    right: 0px;
     .img {
       width: 507px;
       height: 265px;

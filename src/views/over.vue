@@ -1,6 +1,25 @@
 <template>
   <div class="success">
     <background-img></background-img>
+    <!-- 蒙版 -->
+    <div class="masking" v-show="isShow"></div>
+    <!-- 总书记讲话 -->
+    <div class="imp_words" v-show="isShow">
+      <img src="../assets/img/icon/close.png" class="close_btn" @click="closeWords" />
+      <div class="small_title">总书记话语</div>
+      <div class="words">
+        习近平总书记曾强调过：劳动最光荣、劳
+        动最崇高、劳动最伟大、劳动最美丽，全
+        社会都应该尊敬劳动模范、弘扬劳模精神，
+        让诚实劳动、勤勉工作蔚然成风。劳动教
+        育是国民教育体系的重要内容，是我们成
+        长的必要途径。实施劳动教育重点是在系
+        统的文化知识学习之外，有目的、有计划
+        地参加日常生活劳动、生产劳动和服务性
+        劳动，能够使我们树立正确劳动价值观和
+        养成良好劳动品质。
+      </div>
+    </div>
     <div class="title"></div>
     <div class="time_bar">
       <img class="icon_time" src="../assets/img/icon/time.png" alt />
@@ -15,8 +34,7 @@
       </div>
     </div>
     <img src="../assets/img/over/go_home.png" class="btn" @click="goHome" />
-    <div class="hint">
-       <!-- v-show="!this.$store.state.valid" -->
+    <div class="hint" v-show="!this.$store.state.valid">
       <p>由于您在该难度已经挑战过3次</p>
       <p>该次记录将不会记录于排行榜中</p>
     </div>
@@ -29,7 +47,8 @@ export default {
   data() {
     return {
       time: 0,
-      rank: 0
+      rank: 0,
+      isShow: true
     };
   },
   components: {
@@ -38,6 +57,9 @@ export default {
   methods: {
     goHome() {
       this.$router.push("/home");
+    },
+    closeWords() {
+      this.isShow = false;
     }
   }
 };
@@ -45,6 +67,49 @@ export default {
 <style lang="scss" scoped>
 .success {
   overflow: hidden;
+  .masking {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #530101;
+    opacity: 0.4;
+  }
+  .imp_words {
+    width: 602px;
+    height: 606px;
+    background-image: url("../assets/img/over/words_bg.png");
+    background-size: contain;
+    position: absolute;
+    top: 257px;
+    left: 93px;
+    right: 57px;
+    z-index: 3;
+    .close_btn {
+      width: 83px;
+      height: 83px;
+      position: absolute;
+      top: 42px;
+      right: 0;
+    }
+    .small_title {
+      font-family: "fangZheng";
+      font-size: 36px;
+      color: #973333;
+      text-align: center;
+      margin: 130px auto 20px auto;
+      transform: translateX(-12px);
+    }
+    .words{
+      width: 480px;
+      height: 352px;
+      margin: auto auto;
+      font-family: "yueHei";
+      font-size: 26px;
+      line-height: 36px;
+      color: #973333;
+      transform: translateX(-12px);
+    }
+  }
   .title {
     width: 100%;
     height: 100%;
