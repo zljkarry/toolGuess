@@ -4,10 +4,11 @@
     <!-- 返回提示区 -->
     <!-- 蒙版 -->
     <div class="masking" v-show="isWarn"></div>
+    <div class="masking" v-show="pageShow"></div>
     <div class="warning" v-show="isWarn">
       <div class="msg">是否返回主页，若返回,该此成绩将不会被记录。</div>
-      <img class="yes_btn" @click="goHome" src="../assets/img/game/yes.png">
-      <img class="no_btn" @click="closeWarn" src="../assets/img/game/no.png">
+      <img class="yes_btn" @click="goHome" src="../assets/img/game/yes.png" />
+      <img class="no_btn" @click="closeWarn" src="../assets/img/game/no.png" />
     </div>
     <!-- 顶栏信息 -->
     <div class="top">
@@ -21,7 +22,8 @@
       <img :src="questions[n].img" />
     </div>
     <div class="question">
-      <div class="state">{{n+1}}. 以上图片中器具的名称是</div>
+      <div class="state" v-show="questions[n].sort == 0">{{n+1}}. 以上图片中器具的名称是</div>
+      <div class="state" v-show="questions[n].sort == 1">{{n+1}}. 以上劳动工具常用于哪个行业</div>
       <input class="answer" ref="answer" />
     </div>
     <!-- 选项 -->
@@ -39,16 +41,19 @@
     <!-- 工具介绍页 -->
     <div class="introduce" v-show="pageShow">
       <div class="img">
-        <img src="../assets/img/icon/back.png" alt />
+        <img :src="questions[n].img" />
       </div>
       <!-- 正确时right会显示，错误时wrong会显示 -->
       <div class="right" v-show="!wrongShow">{{questions[n].definition}}</div>
       <div class="wrong" v-show="wrongShow">本题正确答案为：{{questions[n].definition}}！</div>
-      <div class="introduce_words">{{questions[n].introduction}}</div>
+      <div class="text_box">
+        <div class="introduce_words">{{questions[n].introduction}}</div>
+      </div>
+
       <!-- 假按钮，即禁用状态的下一题按钮 -->
-      <div class="fake_next" v-show="!realNext">假的下一题按钮</div>
+      <div class="fake_next" v-show="!realNext"></div>
       <!-- 真正的下一题按钮 -->
-      <div class="next" v-show="realNext" @click="goNext">下一题</div>
+      <div class="next" v-show="realNext" @click="goNext"></div>
     </div>
   </div>
 </template>
@@ -65,8 +70,8 @@ export default {
       n: 0,
       isWarn: false,
       isShow: false,
-      pageShow: false,
-      wrongShow: false,
+      pageShow: false, //
+      wrongShow: false, //
       realNext: false,
       count: 0,
       toWhite: false,
@@ -88,8 +93,9 @@ export default {
             "器",
             "具",
             "器",
-            "具",
-          ]
+            "具"
+          ],
+          sort: 0
         },
         {
           img: "../assets/img/btn.jpg",
@@ -108,8 +114,9 @@ export default {
             "器",
             "具",
             "器",
-            "具",
-          ]
+            "具"
+          ],
+          sort: 1
         },
         {
           img: "../assets/img/btn.jpg",
@@ -128,8 +135,9 @@ export default {
             "器",
             "具",
             "器",
-            "具",
-          ]
+            "具"
+          ],
+          sort: 1
         },
         {
           img: "../assets/img/btn.jpg",
@@ -149,11 +157,8 @@ export default {
             "具",
             "器",
             "具",
-            "器",
-            "具",
-            "器",
-            "具"
-          ]
+          ],
+          sort: 1
         },
         {
           img: "../assets/img/btn.jpg",
@@ -173,11 +178,8 @@ export default {
             "具",
             "器",
             "具",
-            "器",
-            "具",
-            "器",
-            "具"
-          ]
+          ],
+          sort: 1
         }
       ]
     };
@@ -387,7 +389,7 @@ input:focus {
     .state {
       width: 489px;
       font-family: "fangZheng";
-      font-size: 36px;
+      font-size: 32px;
       color: #fff;
       text-align-last: justify;
     }
@@ -404,7 +406,7 @@ input:focus {
   .options {
     width: 671px;
     height: 509px;
-    margin: 30px auto;
+    margin: 25px auto 30px auto;
     background-image: url("../assets/img/game/options_bg.png");
     background-repeat: no-repeat;
     background-size: 100%;
@@ -420,7 +422,7 @@ input:focus {
     align-content: center;
   }
   .hint {
-    font-family: 'yueHei';
+    font-family: "yueHei";
     font-size: 28px;
     color: #ffeabf;
     text-align: center;
@@ -436,16 +438,16 @@ input:focus {
     background-image: url("../assets/img/game/pop_up.png");
     background-repeat: no-repeat;
     background-size: 100%;
-    .msg{
+    .msg {
       width: 354px;
       height: 88px;
       margin: 148px auto 64px auto;
       transform: translateX(24px);
-      font-family: 'yueHei';
+      font-family: "yueHei";
       font-size: 32px;
       color: #732626;
     }
-    .yes_btn{
+    .yes_btn {
       width: 156px;
       height: 71px;
       margin: 0 0 0 70px;
@@ -464,8 +466,71 @@ input:focus {
     background-color: #530101;
     opacity: 0.4;
   }
-  .introduce{
-    
+  //工具介绍页
+  .introduce {
+    width: 576px;
+    height: 897px;
+    background-image: url("../assets/img/game/introduce_bg.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: absolute;
+    top: 126px;
+    bottom: 186px;
+    left: 110px;
+    right: 110px;
+    .img {
+      width: 507px;
+      height: 265px;
+      background-image: url("../assets/img/game/photo_bg.png");
+      background-repeat: no-repeat;
+      background-size: 100%;
+      margin: 116px auto 36px auto;
+      img {
+        margin: auto auto;
+      }
+    }
+    .wrong {
+      font-family: "fangZheng";
+      font-size: 32px;
+      color: #973333;
+      text-align: center;
+    }
+    .right {
+      font-family: "fangZheng";
+      font-size: 32px;
+      color: #973333;
+      text-align: center;
+    }
+    .text_box {
+      height: 282px;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+      .introduce_words {
+        width: 464px;
+        font-family: "yueHei";
+        font-size: 26px;
+        color: #973333;
+      }
+    }
+
+    .fake_next {
+      width: 191px;
+      height: 71px;
+      background-image: url("../assets/img/game/next_freeze.png");
+      background-repeat: no-repeat;
+      background-size: 100%;
+      margin: 20px auto auto auto;
+    }
+    .next {
+      width: 191px;
+      height: 71px;
+      background-image: url("../assets/img/game/next.png");
+      background-repeat: no-repeat;
+      background-size: 100%;
+      margin: 20px auto auto auto;
+    }
   }
 }
 </style>
