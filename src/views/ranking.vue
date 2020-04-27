@@ -81,7 +81,7 @@ export default {
       num: 0,
       item0s: [
         {
-          nickname: "赵丽佳",
+          nickname: "赵丽佳zzzzzzzzzzzz",
           time: "20.10"
         },
         {
@@ -171,9 +171,9 @@ export default {
     backgroundImg
   },
   created() {
-    let item0s = ResultService.getRanking(0);
-    let item1s = ResultService.getRanking(1);
-    let item2s = ResultService.getRanking(2);
+    this.item0s = ResultService.getRanking(0);
+    this.item1s = ResultService.getRanking(1);
+    this.item2s = ResultService.getRanking(2);
   },
   methods: {
     goHome() {
@@ -335,9 +335,12 @@ export default {
           width: 114px;
           height: 60px;
           position: absolute;
-          left: 384px;
-          text-align: center;
+          left: 390px;
+          // text-align: center;
           line-height: 60px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
       }
       // 前三名不同设置
@@ -389,10 +392,10 @@ export default {
     .btn {
       top: 22px;
     }
-    .title{
+    .title {
       transform: translateY(-30px);
     }
-    .main{
+    .main {
       padding-top: 66px;
     }
   }

@@ -19,12 +19,14 @@
     </div>
     <!-- 答题区域 -->
     <div class="obj_img">
-      <img :src="questions[n].img" />
+      <div class="img_box">
+        <img :src="questions[n].img" />
+      </div>
     </div>
     <div class="question">
       <div class="state" v-show="questions[n].sort == 0">{{n+1}}. 以上图片中器具的名称是</div>
       <div class="state" v-show="questions[n].sort == 1">{{n+1}}. 以上劳动工具常用于哪个行业</div>
-      <input class="answer" ref="answer" >
+      <input class="answer" ref="answer" />
     </div>
     <!-- 选项 -->
     <div class="options">
@@ -41,7 +43,9 @@
     <!-- 工具介绍页 -->
     <div class="introduce" v-show="pageShow">
       <div class="img">
-        <img :src="questions[n].img" />
+        <div class="img_box">
+          <img :src="questions[n].img" />
+        </div>
       </div>
       <!-- 正确时right会显示，错误时wrong会显示 -->
       <div class="right" v-show="!wrongShow">{{questions[n].definition}}</div>
@@ -70,14 +74,14 @@ export default {
       n: 0,
       isWarn: false,
       isShow: false,
-      pageShow: false, 
-      wrongShow: false, 
+      pageShow: false,
+      wrongShow: false,
       realNext: false,
       count: 0,
       toWhite: false,
       questions: [
         {
-          img: "../assets/img/btn.jpg",
+          img: "../assets/img/icon/back.png",
           definition: "器具",
           introduction:
             "这是工具描述介绍1这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍",
@@ -156,7 +160,7 @@ export default {
             "器",
             "具",
             "器",
-            "具",
+            "具"
           ],
           sort: 1
         },
@@ -177,7 +181,7 @@ export default {
             "器",
             "具",
             "器",
-            "具",
+            "具"
           ],
           sort: 1
         }
@@ -189,12 +193,16 @@ export default {
   },
   created() {
     // 请求题目资源
-    this.questions = ResultService.enterGame(0);
+    // this.questions = ResultService.enterGame(0);
   },
   mounted() {
     this.start();
   },
   methods: {
+    getImg() {
+      let url = require(questions[n].img);
+      return url;
+    },
     // 开始计时
     start() {
       this.timer = setInterval(() => {
@@ -379,8 +387,21 @@ input:focus {
     background-repeat: no-repeat;
     background-size: 100%;
     margin: 26px auto 32px auto;
-    img {
-      margin: auto auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .img_box {
+      width: 311px;
+      height: 242px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: auto;
+        height: 100%;
+        max-width: 100%;
+      }
     }
   }
   .question {
@@ -487,8 +508,21 @@ input:focus {
       background-repeat: no-repeat;
       background-size: 100%;
       margin: 116px auto 36px auto;
-      img {
-        margin: auto auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .img_box {
+        width: 292px;
+        height: 240px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          width: auto;
+          height: 100%;
+          max-width: 100%;
+        }
       }
     }
     .wrong {
@@ -536,18 +570,18 @@ input:focus {
   }
 }
 @media only screen and (min-height: 600px) {
-  .game{
-    .obj_img{
+  .game {
+    .obj_img {
       margin-top: 100px;
       margin-bottom: 40px;
     }
-    .options{
+    .options {
       margin-bottom: 60px;
     }
-    .warning{
+    .warning {
       top: 400px;
     }
-    .introduce{
+    .introduce {
       top: 200px;
     }
   }
