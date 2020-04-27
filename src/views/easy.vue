@@ -199,10 +199,6 @@ export default {
     this.start();
   },
   methods: {
-    getImg() {
-      let url = require(questions[n].img);
-      return url;
-    },
     // 开始计时
     start() {
       this.timer = setInterval(() => {
