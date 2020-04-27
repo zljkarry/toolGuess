@@ -20,10 +20,13 @@ const ApiService = {
 
     // 封装axios
 
-    get(resource) {
-        return Vue.axios.get(resource).catch(error => {
+    async get(resource) {
+        try {
+            return Vue.axios.get(resource);
+        }
+        catch (error) {
             throw new Error(`[RWV] ApiService ${error}`);
-        });
+        }
     },
 
     post(resource, params) {
@@ -38,10 +41,13 @@ const ApiService = {
         return Vue.axios.put(resource, params);
     },
 
-    delete(resource) {
-        return Vue.axios.delete(resource).catch(error => {
+    async delete(resource) {
+        try {
+            return Vue.axios.delete(resource);
+        }
+        catch (error) {
             throw new Error(`[RWV] ApiService ${error}`);
-        });
+        }
     }
 };
 

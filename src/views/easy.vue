@@ -70,8 +70,8 @@ export default {
       n: 0,
       isWarn: false,
       isShow: false,
-      pageShow: false, //
-      wrongShow: false, //
+      pageShow: false, 
+      wrongShow: false, 
       realNext: false,
       count: 0,
       toWhite: false,
@@ -189,7 +189,7 @@ export default {
   },
   created() {
     // 请求题目资源
-    // this.questions = ResultService.enterGame(0);
+    this.questions = ResultService.enterGame(0);
   },
   mounted() {
     this.start();
@@ -546,6 +546,9 @@ input:focus {
     }
     .warning{
       top: 400px;
+    }
+    .introduce{
+      top: 200px;
     }
   }
 }

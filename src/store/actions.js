@@ -13,17 +13,17 @@ export default {
     async [FETCH_SUCCESS]({
         commit
     }, params) {
-        // let {
-        //   data
-        // } = await ResultService.getSucceed(params)
+        let {
+          data
+        } = await ResultService.getSucceed(params)
 
         // 模拟数据，假定排名为1，闯关信息不计入排名
-        let resData = {
-            time: params.time,
-            rank: 1,
-            valid: false,
-        }
-        let data = resData;
+        // let resData = {
+        //     time: params.time,
+        //     rank: 1,
+        //     valid: false,
+        // }
+        // let data = resData;
 
         let _time = data.time
         let _rank = data.rank
