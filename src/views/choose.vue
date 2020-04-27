@@ -119,7 +119,7 @@ export default {
   .list {
     width: 755px;
     height: 615px;
-    margin: auto auto;
+    margin: 30px auto auto auto;
     display: flex;
     .choice1 {
       width: 411px;
@@ -149,17 +149,9 @@ export default {
   }
   // 提示信息
   .hint {
-    margin-top: 105px;
-    .notice {
-      font-family: "yueHei";
-      font-size: 28px;
-      color: #ffeabf;
-      text-align: center;
-      line-height: 36px;
-      span {
-        color: #ffffff;
-      }
-    }
+    position: absolute;
+    bottom: 30px;
+    left: 100px;
   }
 }
 </style>

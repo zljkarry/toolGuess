@@ -24,7 +24,7 @@
     <div class="question">
       <div class="state" v-show="questions[n].sort == 0">{{n+1}}. 以上图片中器具的名称是</div>
       <div class="state" v-show="questions[n].sort == 1">{{n+1}}. 以上劳动工具常用于哪个行业</div>
-      <input class="answer" ref="answer" />
+      <input class="answer" ref="answer" >
     </div>
     <!-- 选项 -->
     <div class="options">
@@ -537,7 +537,7 @@ input:focus {
 @media only screen and (min-height: 600px) {
   .game{
     .obj_img{
-      margin-top: 40px;
+      margin-top: 100px;
       margin-bottom: 40px;
     }
     .options{

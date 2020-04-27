@@ -389,6 +389,9 @@ export default {
     .btn {
       top: 22px;
     }
+    .title{
+      transform: translateY(-30px);
+    }
     .main{
       padding-top: 66px;
     }
