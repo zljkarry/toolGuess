@@ -308,10 +308,11 @@ export default {
         // 若计时器已被清除，再继续计时
         this.start();
       } else {
+        // let time_delivery = this.time*1000;
         // 将关卡数字和通关时间以xxx-数据形式传到后端
         // let data = new FormData();
         // data.append("level", 0);
-        // data.append("time", this.time);
+        // data.append("time", time_delivery);
         // console.log(this.time);
         // console.log(data);
 
