@@ -116,6 +116,7 @@ export default {
     width: 100%;
     height: 100%;
     z-index: -1;
+    overflow: hidden;
     position: absolute;
     background-image: url("../assets/img/home/home.png");
     background-repeat: no-repeat;
@@ -153,7 +154,7 @@ export default {
       top: 300px;
     }
     .title {
-      background-image: url("../assets/img/home/home2.png");
+      background-image: url("../assets/img/home/home_2.png");
     }
     .enter_game_btn{
       margin-top: 780px;

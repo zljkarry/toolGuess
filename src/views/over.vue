@@ -114,6 +114,7 @@ export default {
     width: 100%;
     height: 100%;
     z-index: -1;
+    overflow: hidden;
     position: absolute;
     background-image: url("../assets/img/over/success.png");
     background-repeat: no-repeat;
@@ -171,6 +172,15 @@ export default {
   .success{
     .imp_words{
       top: 350px;
+    }
+    .title{
+    background-image: url("../assets/img/over/success_2.png");
+    }
+    .time_bar{
+      margin-top: 760px;
+    }
+    .btn{
+      margin-top: 70px;
     }
   }
 }
