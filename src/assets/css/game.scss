@@ -1,0 +1,240 @@
+input {
+    background: none;
+    outline: none;
+    border: none;
+  }
+  input:focus {
+    border: none;
+  }
+  .game {
+    overflow: hidden;
+    // 顶栏信息
+    .top {
+      display: flex;
+      // 返回按钮
+      .back {
+        width: 83px;
+        height: 85px;
+        margin: 17px auto auto 12px;
+      }
+      .show_time {
+        width: 180px;
+        height: 80px;
+        background-image: url("../assets/img/game/time_icon.png");
+        background-size: 100%;
+        margin: 13px auto auto 458px;
+        .time {
+          font-family: "yueHei";
+          font-size: 28px;
+          color: #fff;
+          margin-left: 86px;
+          line-height: 80px;
+        }
+      }
+    }
+    .obj_img {
+      width: 643px;
+      height: 386px;
+      background-image: url("../assets/img/game/pic_box.png");
+      background-repeat: no-repeat;
+      background-size: 100%;
+      margin: 26px auto 32px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .img_box {
+        width: 311px;
+        height: 242px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          width: auto;
+          height: 100%;
+          max-width: 100%;
+        }
+      }
+    }
+    .question {
+      display: flex;
+      justify-content: center;
+      .state {
+        width: 489px;
+        font-family: "fangZheng";
+        font-size: 32px;
+        color: #fff;
+        text-align-last: justify;
+      }
+      .answer {
+        width: 118px;
+        margin-left: 15px;
+        border-bottom: 2px solid #fff;
+        text-align: center;
+        font-family: "yueHei";
+        font-size: 36px;
+        color: #fce7d1;
+      }
+    }
+    .options {
+      width: 671px;
+      height: 509px;
+      margin: 25px auto 30px auto;
+      background-image: url("../assets/img/game/options_bg.png");
+      background-repeat: no-repeat;
+      background-size: 100%;
+      font-family: "yueHei";
+      font-size: 80px;
+      color: #6b2e2e;
+      display: grid;
+      grid-template: 144px 144px 144px / 149px 149px 149px 149px;
+      grid-gap: 20px 14px;
+      justify-items: center;
+      align-items: center;
+      justify-content: center;
+      align-content: center;
+    }
+    .hint {
+      font-family: "yueHei";
+      font-size: 28px;
+      color: #ffeabf;
+      text-align: center;
+    }
+    // 确认是否返回
+    .warning {
+      width: 534px;
+      height: 433px;
+      position: absolute;
+      top: 300px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-image: url("../assets/img/game/pop_up.png");
+      background-repeat: no-repeat;
+      background-size: 100%;
+      .msg {
+        width: 354px;
+        height: 88px;
+        margin: 148px auto 64px auto;
+        transform: translateX(24px);
+        font-family: "yueHei";
+        font-size: 32px;
+        color: #732626;
+      }
+      .yes_btn {
+        width: 156px;
+        height: 71px;
+        margin: 0 0 0 70px;
+      }
+      .no_btn {
+        width: 156px;
+        height: 71px;
+        margin: 0 0 0 70px;
+      }
+    }
+    // 蒙版
+    .masking {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background-color: #530101;
+      opacity: 0.4;
+    }
+    //工具介绍页
+    .introduce {
+      width: 576px;
+      height: 897px;
+      background-image: url("../assets/img/game/introduce_bg.png");
+      background-repeat: no-repeat;
+      background-size: 100%;
+      position: absolute;
+      top: 126px;
+      bottom: 186px;
+      // left: 85px;
+      // right: 0px;
+      left: 50%;
+      transform: translateX(-50%);
+      .img {
+        width: 507px;
+        height: 265px;
+        background-image: url("../assets/img/game/photo_bg.png");
+        background-repeat: no-repeat;
+        background-size: 100%;
+        margin: 116px auto 36px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .img_box {
+          width: 292px;
+          height: 240px;
+          overflow: hidden;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            width: auto;
+            height: 100%;
+            max-width: 100%;
+          }
+        }
+      }
+      .wrong {
+        font-family: "fangZheng";
+        font-size: 32px;
+        color: #973333;
+        text-align: center;
+      }
+      .right {
+        font-family: "fangZheng";
+        font-size: 32px;
+        color: #973333;
+        text-align: center;
+      }
+      .text_box {
+        height: 282px;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        .introduce_words {
+          width: 464px;
+          font-family: "yueHei";
+          font-size: 26px;
+          color: #973333;
+        }
+      }
+  
+      .fake_next {
+        width: 191px;
+        height: 71px;
+        background-image: url("../assets/img/game/next_freeze.png");
+        background-repeat: no-repeat;
+        background-size: 100%;
+        margin: 20px auto auto auto;
+      }
+      .next {
+        width: 191px;
+        height: 71px;
+        background-image: url("../assets/img/game/next.png");
+        background-repeat: no-repeat;
+        background-size: 100%;
+        margin: 20px auto auto auto;
+      }
+    }
+  }
+  @media only screen and (min-height: 690px) {
+    .game {
+      .obj_img {
+        margin-top: 100px;
+        margin-bottom: 40px;
+      }
+      .options {
+        margin-bottom: 60px;
+      }
+      .warning {
+        top: 400px;
+      }
+      .introduce {
+        top: 200px;
+      }
+    }
+  }
