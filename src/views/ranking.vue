@@ -387,7 +387,7 @@ export default {
     line-height: 60px;
   }
 }
-@media only screen and (min-height: 600px) {
+@media only screen and (min-height: 690px) {
   .ranking {
     .btn {
       top: 22px;

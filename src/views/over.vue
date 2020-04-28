@@ -168,7 +168,7 @@ export default {
     line-height: 34px;
   }
 }
-@media only screen and (min-height: 600px) {
+@media only screen and (min-height: 690px) {
   .success{
     .imp_words{
       top: 350px;

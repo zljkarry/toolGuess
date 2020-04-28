@@ -148,7 +148,7 @@ export default {
     margin: 12px 228px auto 246px;
   }
 }
-@media only screen and (min-height: 600px) {
+@media only screen and (min-height: 690px) {
   .home {
     .explain{
       top: 300px;

@@ -115,7 +115,7 @@ export default {
     }
   }
 }
-@media only screen and (min-height: 600px) {
+@media only screen and (min-height: 690px) {
   .list {
     width: 755px;
     height: 615px;

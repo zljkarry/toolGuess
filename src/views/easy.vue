@@ -565,7 +565,7 @@ input:focus {
     }
   }
 }
-@media only screen and (min-height: 600px) {
+@media only screen and (min-height: 690px) {
   .game {
     .obj_img {
       margin-top: 100px;
