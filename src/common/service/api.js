@@ -7,6 +7,7 @@ const ApiService = {
     init() {
         Vue.use(VueAxios, axios)
         Vue.axios.defaults.baseURL = API
+        // Vue.axios.defaults.timeout = 5000
         this.setHeader()
 
     },
@@ -14,13 +15,13 @@ const ApiService = {
     setHeader() {
         Vue.axios.defaults.headers.common[
             "Authorization"
-        ] = `${localStorage.getItem('id_token_puzzle')}`
-        console.log(localStorage.getItem('id_token_puzzle'))
+        ] = `${localStorage.getItem('id_token_toolguess')}`
+        console.log(localStorage.getItem('id_token_toolguess'))
     },
 
     // 封装axios
 
-    async get(resource) {
+    get(resource) {
         try {
             return Vue.axios.get(resource);
         }
@@ -41,7 +42,7 @@ const ApiService = {
         return Vue.axios.put(resource, params);
     },
 
-    async delete(resource) {
+    delete(resource) {
         try {
             return Vue.axios.delete(resource);
         }
@@ -56,6 +57,7 @@ export default ApiService;
 export const ResultService = {
     // 难度选择之后进入游戏向后端请求游戏题目数据，根据传入的难度参数返回长度不同的数组
     // 数组中每个对象的属性包括器具图片url，器具名称，16个乱序字数组
+    // ,{responseType: "arraybuffer",}
     enterGame(params) {
         return ApiService.get(`questions?level=${params}`)
     },

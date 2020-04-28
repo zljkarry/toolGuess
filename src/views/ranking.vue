@@ -171,9 +171,46 @@ export default {
     backgroundImg
   },
   created() {
-    this.item0s = ResultService.getRanking(0);
-    this.item1s = ResultService.getRanking(1);
-    this.item2s = ResultService.getRanking(2);
+    this.$axios.get('http://2018211259.natapp1.cc/ranking?level=0')
+    .then(
+      response=>{
+        this.item0s = response.data.ranking;
+      }
+    )
+    .catch(
+      error=>{
+        console.log(error);
+        alert('网络错误，不能访问');
+      }
+    )
+    this.$axios.get('http://2018211259.natapp1.cc/ranking?level=1')
+    .then(
+      response=>{
+        this.item1s = response.data.ranking;
+      }
+    )
+    .catch(
+      error=>{
+        console.log(error);
+        alert('网络错误，不能访问');
+      }
+    )
+    this.$axios.get('http://2018211259.natapp1.cc/ranking?level=2')
+    .then(
+      response=>{
+        this.item2s = response.data.ranking;
+      }
+    )
+    .catch(
+      error=>{
+        console.log(error);
+        alert('网络错误，不能访问');
+      }
+    )
+    console.log("woqingqiule")
+    console.log(this.item0s)
+    // this.item1s = ResultService.getRanking(1);
+    // this.item2s = ResultService.getRanking(2);
   },
   methods: {
     goHome() {
@@ -383,8 +420,11 @@ export default {
     font-family: "yueHei";
     font-size: 28px;
     color: #ffeabf;
-    text-align: center;
     line-height: 60px;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 @media only screen and (min-height: 690px) {

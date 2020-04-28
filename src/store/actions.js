@@ -15,7 +15,7 @@ export default {
     }, params) {
         let {
           data
-        } = await ResultService.getSucceed(params)
+        } = await ResultService.gameSucceed(params)
 
         // 模拟数据，假定排名为1，闯关信息不计入排名
         // let resData = {

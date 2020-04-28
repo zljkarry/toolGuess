@@ -11,11 +11,11 @@
         "eyJleHAiOiIxMDI0MjYyMzEzOCIsImhlYWRJbWdVcmwiOiJodHRwOi8vdGhpcmR3eC5xbG9nby5jbi9tbW9wZW4vdmlfMzIvaDFsVm8wTjA4QTdQQlRjOW9lTlpaMTZYbFBNdW9lQ1g5ZDlZeVpZQlRMdGh0NlNSOUJPc3BuSjJWWEFIZ0JxOG5jS2daY0ZzREtTWmUyS0FpYkRCNnNBLzEzMiIsImlhdCI6IjE1ODc5MDYyNTgiLCJuaWNrbmFtZSI6IuWNgeS4gyIsInJlZElkIjoiMDRkMWQ1OTUzM2VhMmI4MzY3ZGVmNjIyYjkxZGU5NWRmZjRmZGQ3MyIsInN1YiI6InhicyJ9.mG7NHSzFIlSIUYedAsw4IxLmMs+SR8iK2F+XDcHyuGZecMS2IUGIx4Yb/ViymJaWaVJsS4MyWDsIXGyhwY8luMtYzmWJGuG3+3xj4x9UaHSw+QilMwOIIx8ZjtqhinYEEPo01vEBeCSLp1KnVUecQbWZEiud30/pwcXxBteIQPsGVw5ZPfH5FGoNdgnojtrHVQCHR8JJKnRaaC0JTopzQOPQ58JlpLi8Gip+Xcg/pvBHteFMpkrUusZ20zdVZFKdu/2xf7ttD5q/wuGQTG4FSNuo9qugMms1ccUVUpQ+7JCi05FJ53WN8xu9+t8n4iobTgyVTzyHyBrzUa8tegC7bA==eyJleHAiOiIxMDI0MjYyMzEzOCIsImhlYWRJbWdVcmwiOiJodHRwOi8vdGhpcmR3eC5xbG9nby5jbi9tbW9wZW4vdmlfMzIvaDFsVm8wTjA4QTdQQlRjOW9lTlpaMTZYbFBNdW9lQ1g5ZDlZeVpZQlRMdGh0NlNSOUJPc3BuSjJWWEFIZ0JxOG5jS2daY0ZzREtTWmUyS0FpYkRCNnNBLzEzMiIsImlhdCI6IjE1ODc5MDYyNTgiLCJuaWNrbmFtZSI6IuWNgeS4gyIsInJlZElkIjoiMDRkMWQ1OTUzM2VhMmI4MzY3ZGVmNjIyYjkxZGU5NWRmZjRmZGQ3MyIsInN1YiI6InhicyJ9.mG7NHSzFIlSIUYedAsw4IxLmMs+SR8iK2F+XDcHyuGZecMS2IUGIx4Yb/ViymJaWaVJsS4MyWDsIXGyhwY8luMtYzmWJGuG3+3xj4x9UaHSw+QilMwOIIx8ZjtqhinYEEPo01vEBeCSLp1KnVUecQbWZEiud30/pwcXxBteIQPsGVw5ZPfH5FGoNdgnojtrHVQCHR8JJKnRaaC0JTopzQOPQ58JlpLi8Gip+Xcg/pvBHteFMpkrUusZ20zdVZFKdu/2xf7ttD5q/wuGQTG4FSNuo9qugMms1ccUVUpQ+7JCi05FJ53WN8xu9+t8n4iobTgyVTzyHyBrzUa8tegC7bA=="
   
       // const token = document.location.hash.split('#/?token=')[1];
-      if (!localStorage.getItem('id_token_toolguess') && !token) {
-        window.location.href =
-          'https://wx.redrock.team/magicloop/rushb?b=' + encodeURI(
-            'https://wx.redrock.team/wxapi/puzzleofthemap/api/enter') + '&scope=tmpbase';
-      }
+      // if (!localStorage.getItem('id_token_toolguess') && !token) {
+      //   window.location.href =
+      //     'https://wx.redrock.team/magicloop/rushb?b=' + encodeURI(
+      //       'http://api-234.redrock.team/wuyitools/api') + '&scope=tmpbase';
+      // }
   
       if (token && token.length) {
         document.location.hash = '#/';

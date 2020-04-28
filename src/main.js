@@ -5,6 +5,8 @@ import store from './store'
 import './assets/css/common.css'
 import './assets/font/font.css'
 import ApiService from './common/service/api'
+import axios from 'axios'
+Vue.prototype.$axios = axios
 
 import backgroundImg from '@/components/backgroundimg.vue'
 Vue.component('backgroundImg', backgroundImg)

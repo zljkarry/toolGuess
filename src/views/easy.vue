@@ -19,39 +19,38 @@
     </div>
     <!-- 答题区域 -->
     <div class="obj_img">
-      <div class="img_box">
-        <img :src="questions[n].img" />
+      <div class="img_box" v-if="questions[n]">
+        <img :src="'/questions/'+ questions[n].img" />
       </div>
     </div>
-    <div class="question">
+    <div class="question" v-if="questions[n]">
       <div class="state" v-show="questions[n].sort == 0">{{n+1}}. 以上图片中器具的名称是</div>
       <div class="state" v-show="questions[n].sort == 1">{{n+1}}. 以上劳动工具常用于哪个行业</div>
       <input class="answer" ref="answer" />
     </div>
     <!-- 选项 -->
-    <div class="options">
+    <div class="options" v-if="questions[n]">
       <div
         class="option"
         v-for="word in questions[n].words"
         :key="word.index"
         @click="getWord(word,$event)"
-        :class="{'white':toWhite}"
       >{{word}}</div>
     </div>
     <!-- 提示区域 -->
     <div class="hint" v-show="isShow">答案错误！请重新选择</div>
     <!-- 工具介绍页 -->
-    <div class="introduce" v-show="pageShow">
+    <div class="introduce" v-show="pageShow"  v-if="questions[n]">
       <div class="img">
-        <div class="img_box">
-          <img :src="questions[n].img" />
+        <div class="img_box" v-if="questions[n]">
+          <img :src="'/questions/'+ questions[n].img" />
         </div>
       </div>
       <!-- 正确时right会显示，错误时wrong会显示 -->
       <div class="right" v-show="!wrongShow">{{questions[n].definition}}</div>
       <div class="wrong" v-show="wrongShow">本题正确答案为：{{questions[n].definition}}！</div>
       <div class="text_box">
-        <div class="introduce_words">{{questions[n].introduction}}</div>
+        <div class="introduce_words" v-if="questions[n]">{{questions[n].introduction}}</div>
       </div>
 
       <!-- 假按钮，即禁用状态的下一题按钮 -->
@@ -78,10 +77,9 @@ export default {
       wrongShow: false,
       realNext: false,
       count: 0,
-      toWhite: false,
       questions: [
         {
-          img: "../assets/img/icon/back.png",
+          img: "镰刀_pro.jpg",
           definition: "器具",
           introduction:
             "这是工具描述介绍1这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍",
@@ -102,7 +100,7 @@ export default {
           sort: 0
         },
         {
-          img: "../assets/img/btn.jpg",
+          img: "镰刀_pro.jpg",
           definition: "器具",
           introduction:
             "这是工具描述介绍2这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍",
@@ -123,7 +121,7 @@ export default {
           sort: 1
         },
         {
-          img: "../assets/img/btn.jpg",
+          img: "镰刀_pro.jpg",
           definition: "器具",
           introduction:
             "这是工具描述介绍3这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍",
@@ -144,7 +142,7 @@ export default {
           sort: 1
         },
         {
-          img: "../assets/img/btn.jpg",
+          img: "镰刀_pro.jpg",
           definition: "器具",
           introduction:
             "这是工具描述介绍4这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍",
@@ -165,7 +163,7 @@ export default {
           sort: 1
         },
         {
-          img: "../assets/img/btn.jpg",
+          img: "镰刀_pro.jpg",
           definition: "器具",
           introduction:
             "这是工具描述介绍5这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍",
@@ -193,7 +191,20 @@ export default {
   },
   created() {
     // 请求题目资源
-    // this.questions = ResultService.enterGame(0);
+    this.$axios.get('http://2018211259.natapp1.cc/questions?level=0')
+    .then(
+      response=>{
+        this.questions = response.data.questions;
+      }
+    )
+    .catch(
+      error=>{
+        console.log(error);
+        alert('网络错误，不能访问');
+      }
+    )
+    // this.questions = ResultService.enterGame(0).then(data =>{ console.log(data.data) });
+    console.log(this.questions)
   },
   mounted() {
     this.start();
@@ -312,18 +323,19 @@ export default {
         // 若计时器已被清除，再继续计时
         this.start();
       } else {
-        // let time_delivery = this.time*1000;
-        // 将关卡数字和通关时间以xxx-数据形式传到后端
-        // let data = new FormData();
-        // data.append("level", 0);
-        // data.append("time", time_delivery);
-        // console.log(this.time);
-        // console.log(data);
+        // 将关卡数字和通关时间以application/x-www-form-urlencoded数据形式传到后端
+        let time_delivery = this.time*1000;
+        let data = new FormData();
+        data.append("level", 0);
+        console.log(time_delivery)
+        data.append("time", time_delivery);
+        console.log(this.time);
+        console.log(data);
 
         // 模拟数据
-        let data = {
-          time: this.time
-        };
+        // let data = {
+        //   time: this.time
+        // };
 
         this.$store.dispatch(FETCH_SUCCESS, data);
         this.$router.push("/over");

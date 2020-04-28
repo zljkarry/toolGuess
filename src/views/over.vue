@@ -29,7 +29,7 @@
     <div class="ranking_bar">
       <img class="icon_ranking" src="../assets/img/icon/ranking.png" alt />
       <div class="ranking">
-        {{$store.state.rank}}
+        {{$store.state.rank+1}}
         <span>th</span>
       </div>
     </div>
@@ -108,6 +108,7 @@ export default {
       line-height: 36px;
       color: #973333;
       transform: translateX(-12px);
+      text-align: justify;
     }
   }
   .title {
