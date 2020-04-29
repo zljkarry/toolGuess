@@ -18,6 +18,9 @@
       </div>
     </div>
     <!-- 答题区域 -->
+    <div v-if="questions[n]">
+      <div class="answer_hint">答案提示：{{questions[n].definition.length}}个字</div>
+    </div>
     <div class="obj_img">
       <div class="img_box" v-if="questions[n]">
         <img :src="'/game/toolguess2020/questions/'+ questions[n].img" />
@@ -49,7 +52,8 @@
         </div>
       </div>
       <!-- 正确时right会显示，错误时wrong会显示 -->
-      <div class="right" v-show="!wrongShow">{{questions[n].definition}}</div>
+      <div class="right" v-show="(!wrongShow)&&(questions[n].sort == 1)">{{questions[n].name}}</div>
+      <div class="right" v-show="(!wrongShow)&&(questions[n].sort == 0)">{{questions[n].definition}}</div>
       <div class="wrong" v-show="wrongShow">本题正确答案为：{{questions[n].definition}}！</div>
       <div class="text_box">
         <div class="introduce_words" v-if="questions[n]">{{questions[n].introduction}}</div>
@@ -328,7 +332,7 @@ export default {
         // 将关卡数字和通关时间以application/x-www-form-urlencoded数据形式传到后端
         let time_delivery = this.time*1000;
         let data = new FormData();
-        data.append("level", 0);
+        data.append("level", 2);
         console.log(time_delivery)
         data.append("time", time_delivery);
         console.log(this.time);

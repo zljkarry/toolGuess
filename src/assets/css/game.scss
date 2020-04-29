@@ -39,13 +39,23 @@ input:focus {
     }
   }
 
+  .answer_hint{
+    font-family: "yueHei";
+    font-size: 26px;
+    color: #ffada0;
+    text-align: center;
+    position: absolute;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
   .obj_img {
     width: 643px;
     height: 386px;
     background-image: url("../assets/img/game/pic_box.png");
     background-repeat: no-repeat;
     background-size: 100%;
-    margin: 26px auto 32px auto;
+    margin: 0 auto 32px auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -231,6 +241,7 @@ input:focus {
         font-family: "yueHei";
         font-size: 26px;
         color: #973333;
+        text-align: justify;
       }
     }
 
@@ -256,8 +267,11 @@ input:focus {
 
 @media only screen and (min-height: 720px) {
   .game {
+    .answer_hint{
+      top: 160px;
+    }
     .obj_img {
-      margin-top: 100px;
+      margin-top: 90px;
       margin-bottom: 40px;
     }
 
