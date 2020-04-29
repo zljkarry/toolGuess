@@ -45,7 +45,7 @@
           <div
             class="list_item"
             :class="'rank'+index+'_item'"
-            v-for="(item,index) in item0s"
+            v-for="(item,index) in item1s"
             :key="item.index"
           >
             <div class="rank" :class="'icon'+index">{{setNumber(index)}}</div>
@@ -58,7 +58,7 @@
           <div
             class="list_item"
             :class="'rank'+index+'_item'"
-            v-for="(item,index) in item0s"
+            v-for="(item,index) in item2s"
             :key="item.index"
           >
             <div class="rank" :class="'icon'+index">{{setNumber(index)}}</div>
@@ -81,89 +81,30 @@ export default {
       num: 0,
       item0s: [
         {
-          nickname: "赵丽佳zzzzzzzzzzzz",
+          nickname: "第一名zzzzzzzzzzzz",
           time: "20.10"
         },
         {
-          nickname: "赵丽佳",
+          nickname: "第二名",
           time: "20.10"
         },
         {
-          nickname: "赵丽佳",
+          nickname: "第三名",
           time: "20.10"
         },
-        {
-          nickname: "赵丽佳",
-          time: "20.10"
-        },
-        {
-          nickname: "赵丽佳",
-          time: "20.10"
-        },
-        {
-          nickname: "赵丽佳",
-          time: "20.10"
-        },
-        {
-          nickname: "赵丽佳",
-          time: "20.10"
-        },
-        {
-          nickname: "赵丽佳",
-          time: "20.10"
-        },
-        {
-          nickname: "赵丽佳",
-          time: "20.10"
-        },
-        {
-          nickname: "赵丽佳",
-          time: "20.10"
-        }
       ],
       item1s: [
         {
-          nickname: "赵丽佳2",
+          nickname: "第一名2",
           time: "20.10"
         },
-        {
-          nickname: "赵丽佳",
-          time: "20.10"
-        },
-        {
-          nickname: "赵丽佳",
-          time: "20.10"
-        },
-        {
-          nickname: "赵丽佳",
-          time: "20.10"
-        },
-        {
-          nickname: "赵丽佳",
-          time: "20.10"
-        }
+        
       ],
       item2s: [
         {
-          nickname: "赵丽佳3",
+          nickname: "第一名3",
           time: "20.10"
         },
-        {
-          nickname: "赵丽佳",
-          time: "20.10"
-        },
-        {
-          nickname: "赵丽佳",
-          time: "20.10"
-        },
-        {
-          nickname: "赵丽佳",
-          time: "20.10"
-        },
-        {
-          nickname: "赵丽佳",
-          time: "20.10"
-        }
       ]
     };
   },
@@ -171,7 +112,7 @@ export default {
     backgroundImg
   },
   created() {
-    this.$axios.get('http://2018211259.natapp1.cc/ranking?level=0')
+    this.$axios.get('https://wx.redrock.team/wxapi/wuyitools/ranking?level=0')
     .then(
       response=>{
         this.item0s = response.data.ranking;
@@ -183,7 +124,7 @@ export default {
         alert('网络错误，不能访问');
       }
     )
-    this.$axios.get('http://2018211259.natapp1.cc/ranking?level=1')
+    this.$axios.get('https://wx.redrock.team/wxapi/wuyitools/ranking?level=1')
     .then(
       response=>{
         this.item1s = response.data.ranking;
@@ -195,7 +136,7 @@ export default {
         alert('网络错误，不能访问');
       }
     )
-    this.$axios.get('http://2018211259.natapp1.cc/ranking?level=2')
+    this.$axios.get('https://wx.redrock.team/wxapi/wuyitools/ranking?level=2')
     .then(
       response=>{
         this.item2s = response.data.ranking;
@@ -329,7 +270,7 @@ export default {
         left: 10px;
       }
       .time_title {
-        width: 152px;
+        width: 158px;
         position: absolute;
         left: 166px;
       }
@@ -427,7 +368,7 @@ export default {
     transform: translateX(-50%);
   }
 }
-@media only screen and (min-height: 690px) {
+@media only screen and (min-height: 720px) {
   .ranking {
     .btn {
       top: 22px;

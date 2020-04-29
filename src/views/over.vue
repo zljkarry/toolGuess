@@ -24,7 +24,7 @@
     <div class="time_bar">
       <img class="icon_time" src="../assets/img/icon/time.png" alt />
 
-      <div class="time">{{$store.state.time}} s</div>
+      <div class="time">{{$store.state.time}}s</div>
     </div>
     <div class="ranking_bar">
       <img class="icon_ranking" src="../assets/img/icon/ranking.png" alt />
@@ -78,7 +78,7 @@ export default {
     width: 602px;
     height: 606px;
     background-image: url("../assets/img/over/words_bg.png");
-    background-size: contain;
+    background-size: 100%;
     position: absolute;
     top: 257px;
     left: 93px;
@@ -122,8 +122,9 @@ export default {
     background-size: 100%;
   }
   .time_bar {
+    width: 300px;
     height: 56px;
-    margin: 662px auto auto 276px;
+    margin: 662px 0 0 276px;
     display: flex;
     .icon_time {
       width: 55px;
@@ -139,7 +140,7 @@ export default {
   }
   .ranking_bar {
     height: 68px;
-    margin: 10px auto auto 276px;
+    margin: 10px 0 0 276px;
     display: flex;
     .icon_ranking {
       width: 47px;
@@ -169,7 +170,7 @@ export default {
     line-height: 34px;
   }
 }
-@media only screen and (min-height: 690px) {
+@media only screen and (min-height: 720px) {
   .success{
     .imp_words{
       top: 350px;

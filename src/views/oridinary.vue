@@ -20,13 +20,16 @@
     <!-- 答题区域 -->
     <div class="obj_img">
       <div class="img_box" v-if="questions[n]">
-        <img :src="'/questions/'+ questions[n].img" />
+        <img :src="'/game/toolguess2020/questions/'+ questions[n].img" />
       </div>
     </div>
     <div class="question" v-if="questions[n]">
       <div class="state" v-show="questions[n].sort == 0">{{n+1}}. 以上图片中器具的名称是</div>
       <div class="state" v-show="questions[n].sort == 1">{{n+1}}. 以上劳动工具常用于哪个行业</div>
-      <input class="answer" ref="answer" />
+      <div class="answer_box">
+        <input class="answer" ref="answer" />
+      </div>
+      
     </div>
     <!-- 选项 -->
     <div class="options" v-if="questions[n]">
@@ -43,7 +46,7 @@
     <div class="introduce" v-show="pageShow"  v-if="questions[n]">
       <div class="img">
         <div class="img_box" v-if="questions[n]">
-          <img :src="'/questions/'+ questions[n].img" />
+          <img :src="'/game/toolguess2020/questions/'+ questions[n].img" />
         </div>
       </div>
       <!-- 正确时right会显示，错误时wrong会显示 -->
@@ -79,7 +82,7 @@ export default {
       count: 0,
       questions: [
         {
-          img: "镰刀_pro.jpg",
+          img: "镰刀.jpg",
           definition: "器具",
           introduction:
             "这是工具描述介绍1这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍这是工具描述介绍",
@@ -191,7 +194,7 @@ export default {
   },
   created() {
     // 请求题目资源
-    this.$axios.get('http://2018211259.natapp1.cc/questions?level=1')
+    this.$axios.get('https://wx.redrock.team/wxapi/wuyitools/questions?level=1')
     .then(
       response=>{
         this.questions = response.data.questions;

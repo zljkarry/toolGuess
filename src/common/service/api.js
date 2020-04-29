@@ -13,7 +13,7 @@ const ApiService = {
     },
     //每次发送请求时 把获得的token放在请求头里
     setHeader() {
-        Vue.axios.defaults.headers.common[
+        Vue.axios.defaults.headers.post[
             "Authorization"
         ] = `${localStorage.getItem('id_token_toolguess')}`
         console.log(localStorage.getItem('id_token_toolguess'))
