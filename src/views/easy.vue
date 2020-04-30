@@ -30,7 +30,7 @@
       <div class="state" v-show="questions[n].sort == 0">{{n+1}}. 以上图片中器具的名称是</div>
       <div class="state" v-show="questions[n].sort == 1">{{n+1}}. 以上劳动工具常用于哪个行业</div>
       <div class="answer_box">
-        <input class="answer" ref="answer" />
+        <input class="answer" ref="answer" onfocus=this.blur() />
       </div>
       
     </div>
@@ -72,6 +72,7 @@
 import backgroundImg from "@/components/backgroundimg.vue";
 import { ResultService } from "../common/service/api.js";
 import { FETCH_SUCCESS } from "../store/type/actions_type";
+import md5 from 'js-md5';
 export default {
   data() {
     return {
@@ -336,6 +337,12 @@ export default {
         data.append("level", 0);
         console.log(time_delivery)
         data.append("time", time_delivery);
+        console.log(time_delivery)
+        // let _key = time_delivery*10
+        // console.log(md5(_key))
+        // console.log(md5(time_delivery*10).toString())
+        // let key = md5(time_delivery*10).toString();
+        // data.append("key",key);
         console.log(this.time);
         console.log(data);
 
@@ -345,7 +352,9 @@ export default {
         // };
 
         this.$store.dispatch(FETCH_SUCCESS, data);
-        this.$router.push("/over");
+        setTimeout(() => {
+              this.$router.push("/over");
+            }, 500);
         // 清除计时器
         clearInterval(this.timer);
       }

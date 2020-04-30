@@ -10,9 +10,8 @@
     <script>
       // const token =
       //   "eyJleHAiOiIxMDI0Mjg3NjQyMCIsImhlYWRJbWdVcmwiOiJodHRwOi8vdGhpcmR3eC5xbG9nby5jbi9tbW9wZW4vdmlfMzIvaDFsVm8wTjA4QTdQQlRjOW9lTlpaMTZYbFBNdW9lQ1g5ZDlZeVpZQlRMdGh0NlNSOUJPc3BuSjJWWEFIZ0JxOG5jS2daY0ZzREtTWmUyS0FpYkRCNnNBLzEzMiIsImlhdCI6IjE1ODgxNTk1NDAiLCJuaWNrbmFtZSI6IuWNgeS4gyIsInJlZElkIjoiMDRkMWQ1OTUzM2VhMmI4MzY3ZGVmNjIyYjkxZGU5NWRmZjRmZGQ3MyIsInN1YiI6InhicyJ9.Ps3M6rirZA26W0z2P1fm8C3uQbqDb+9lkjNNE1hWEBLP2vbyq7fT6SWiR5plMGdcPAiEj/kY00rSFYS+kOukEFaNHvmtph+8vF5guT/t8CpfXFnvmIdsJq9f521GapAHgw5VAXHfIlEg+XwUdSnvTG7iWSLCp0X2MEYPwONA0ZhOzyWEkD51Y8ZfvskD78tGPGmPXEpPMZ3RRTI8X7YwTe3yAJLe5y2c7rQg7zBysb8+sjUHm2u26y1GlN1lQ5wq8W0OApdld/J9YNa5ynp8gUmJnhpoRgsF1qYdKZxV6LcGk4s0wgiimXtniFHhL9mRZCZZFvJ67haD0U48YPUmjg=="
-      console.log(document.location.href)
+
       const token = document.location.href.split('token=')[1];
-      console.log(token)
       if (token && token.length) {
         // token = token.split('#/')[0];
         document.location.hash = '#/';
@@ -25,9 +24,7 @@
         window.location.href =
           'https://wx.redrock.team/magicloop/rushb?b=' + encodeURI(
             'https://wx.redrock.team/wxapi/wuyitools/enter') + '&scope=normal';
-
       }
-      console.log(token)
     </script>
     <script>
       var _hmt = _hmt || [];

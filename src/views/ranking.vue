@@ -1,7 +1,6 @@
 <template>
   <div class="ranking">
     <background-img></background-img>
-
     <img class="btn" @click="goHome" src="../assets/img/icon/back.png" alt />
     <div class="main">
       <img class="title" src="../assets/img/ranking/rank_title.png" alt />
@@ -67,7 +66,6 @@
           </div>
         </div>
       </div>
-      <div class="hint">排名信息将在每日0点更新！</div>
     </div>
   </div>
 </template>
@@ -91,20 +89,19 @@ export default {
         {
           nickname: "第三名",
           time: "20.10"
-        },
+        }
       ],
       item1s: [
         {
           nickname: "第一名2",
           time: "20.10"
-        },
-        
+        }
       ],
       item2s: [
         {
           nickname: "第一名3",
           time: "20.10"
-        },
+        }
       ]
     };
   },
@@ -112,44 +109,35 @@ export default {
     backgroundImg
   },
   created() {
-    this.$axios.get('https://wx.redrock.team/wxapi/wuyitools/ranking?level=0')
-    .then(
-      response=>{
+    this.$axios
+      .get("https://wx.redrock.team/wxapi/wuyitools/ranking?level=0")
+      .then(response => {
         this.item0s = response.data.ranking;
-      }
-    )
-    .catch(
-      error=>{
+      })
+      .catch(error => {
         console.log(error);
-        alert('网络错误，不能访问');
-      }
-    )
-    this.$axios.get('https://wx.redrock.team/wxapi/wuyitools/ranking?level=1')
-    .then(
-      response=>{
+        alert("网络错误，不能访问");
+      });
+    this.$axios
+      .get("https://wx.redrock.team/wxapi/wuyitools/ranking?level=1")
+      .then(response => {
         this.item1s = response.data.ranking;
-      }
-    )
-    .catch(
-      error=>{
+      })
+      .catch(error => {
         console.log(error);
-        alert('网络错误，不能访问');
-      }
-    )
-    this.$axios.get('https://wx.redrock.team/wxapi/wuyitools/ranking?level=2')
-    .then(
-      response=>{
+        alert("网络错误，不能访问");
+      });
+    this.$axios
+      .get("https://wx.redrock.team/wxapi/wuyitools/ranking?level=2")
+      .then(response => {
         this.item2s = response.data.ranking;
-      }
-    )
-    .catch(
-      error=>{
+      })
+      .catch(error => {
         console.log(error);
-        alert('网络错误，不能访问');
-      }
-    )
-    console.log("woqingqiule")
-    console.log(this.item0s)
+        alert("网络错误，不能访问");
+      });
+    console.log("woqingqiule");
+    console.log(this.item0s);
     // this.item1s = ResultService.getRanking(1);
     // this.item2s = ResultService.getRanking(2);
   },
@@ -181,7 +169,7 @@ export default {
   .title {
     width: 402px;
     height: 130px;
-    margin: 46px 170px 20px 170px;
+    margin: 16px 170px 0 170px;
   }
   // 难度类别
   .tabs {
@@ -225,7 +213,7 @@ export default {
   }
   // 榜单内容
   .content {
-    width: 638px;
+    width: 637px;
     margin: auto auto;
     padding-bottom: 52px;
     overflow: hidden;
@@ -249,8 +237,9 @@ export default {
       }
       .bg_bottom {
         width: 100%;
-        height: 71px;
+        height: 72px;
         background-image: url("../assets/img/ranking/box_bottom.png");
+        background-repeat: no-repeat;
         background-size: 100%;
       }
     }
@@ -357,16 +346,6 @@ export default {
       }
     }
   }
-  .hint {
-    font-family: "yueHei";
-    font-size: 28px;
-    color: #ffeabf;
-    line-height: 60px;
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
 }
 @media only screen and (min-height: 720px) {
   .ranking {
@@ -374,10 +353,13 @@ export default {
       top: 22px;
     }
     .title {
-      transform: translateY(-30px);
+      transform: translateY(-40px);
+    }
+    .tabs {
+      margin-top: 10px;
     }
     .main {
-      padding-top: 66px;
+      padding-top: 96px;
     }
   }
 }

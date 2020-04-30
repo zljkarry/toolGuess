@@ -29,13 +29,13 @@
     <div class="ranking_bar">
       <img class="icon_ranking" src="../assets/img/icon/ranking.png" alt />
       <div class="ranking">
-        {{$store.state.rank+1}}
+        {{$store.state.rank}}
         <span>th</span>
       </div>
     </div>
     <img src="../assets/img/over/go_home.png" class="btn" @click="goHome" />
     <div class="hint" v-show="!this.$store.state.valid">
-      <p>由于您在该难度已经挑战过3次</p>
+      <p>由于您在该难度已经挑战过2次</p>
       <p>该次记录将不会记录于排行榜中</p>
     </div>
   </div>
@@ -46,8 +46,6 @@ import backgroundImg from "@/components/backgroundimg.vue";
 export default {
   data() {
     return {
-      time: 0,
-      rank: 0,
       isShow: true
     };
   },
@@ -99,7 +97,7 @@ export default {
       margin: 130px auto 20px auto;
       transform: translateX(-12px);
     }
-    .words{
+    .words {
       width: 480px;
       height: 352px;
       margin: auto auto;
@@ -171,18 +169,19 @@ export default {
   }
 }
 @media only screen and (min-height: 720px) {
-  .success{
-    .imp_words{
+  .success {
+    .imp_words {
       top: 350px;
     }
-    .title{
-    background-image: url("../assets/img/over/success_2.png");
+    .title {
+      top: 10px;
+      background-image: url("../assets/img/over/success_2.png");
     }
-    .time_bar{
-      margin-top: 760px;
+    .time_bar {
+      margin-top: 770px;
     }
-    .btn{
-      margin-top: 70px;
+    .btn {
+      margin-top: 80px;
     }
   }
 }
