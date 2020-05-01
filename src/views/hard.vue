@@ -30,7 +30,7 @@
       <div class="state" v-show="questions[n].sort == 0">{{n+1}}. 以上图片中器具的名称是</div>
       <div class="state" v-show="questions[n].sort == 1">{{n+1}}. 以上劳动工具常用于哪个行业</div>
       <div class="answer_box">
-        <input class="answer" ref="answer" onfocus=this.blur()/>
+        <input class="answer" ref="answer" onfocus="this.blur()" />
       </div>
     </div>
     <!-- 选项 -->
@@ -45,7 +45,7 @@
     <!-- 提示区域 -->
     <div class="hint" v-show="isShow">答案错误！请重新选择</div>
     <!-- 工具介绍页 -->
-    <div class="introduce" v-show="pageShow"  v-if="questions[n]">
+    <div class="introduce" v-show="pageShow" v-if="questions[n]">
       <div class="img">
         <div class="img_box" v-if="questions[n]">
           <img :src="'/game/toolguess2020/questions/'+ questions[n].img" />
@@ -71,7 +71,7 @@
 import backgroundImg from "@/components/backgroundimg.vue";
 import { ResultService } from "../common/service/api.js";
 import { FETCH_SUCCESS } from "../store/type/actions_type";
-import md5 from 'js-md5';
+import md5 from "js-md5";
 export default {
   data() {
     return {
@@ -198,20 +198,21 @@ export default {
   },
   created() {
     // 请求题目资源
-    this.$axios.get('https://wx.redrock.team/wxapi/wuyitools/questions?level=2')
-    .then(
-      response=>{
+    this.$axios
+      .get("https://wx.redrock.team/wxapi/wuyitools/questions?level=2", {
+        headers: {
+          Authorization: localStorage.getItem("id_token_toolguess")
+        }
+      })
+      .then(response => {
         this.questions = response.data.questions;
-      }
-    )
-    .catch(
-      error=>{
+      })
+      .catch(error => {
         console.log(error);
-        alert('网络错误，不能访问');
-      }
-    )
+        alert("网络错误，不能访问");
+      });
     // this.questions = ResultService.enterGame(0).then(data =>{ console.log(data.data) });
-    console.log(this.questions)
+    console.log(this.questions);
   },
   mounted() {
     this.start();
@@ -331,10 +332,10 @@ export default {
         this.start();
       } else {
         // 将关卡数字和通关时间以application/x-www-form-urlencoded数据形式传到后端
-        let time_delivery = this.time*1000;
+        let time_delivery = this.time * 1000;
         let data = new FormData();
         data.append("level", 2);
-        console.log(time_delivery)
+        console.log(time_delivery);
         data.append("time", time_delivery);
         // data.append("key", md5(time_delivery*10));
         console.log(this.time);
@@ -347,8 +348,8 @@ export default {
 
         this.$store.dispatch(FETCH_SUCCESS, data);
         setTimeout(() => {
-              this.$router.push("/over");
-            }, 500);
+          this.$router.push("/over");
+        }, 500);
         // 清除计时器
         clearInterval(this.timer);
       }
